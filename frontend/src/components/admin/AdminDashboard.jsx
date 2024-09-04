@@ -1,77 +1,58 @@
-import React from 'react';
-import { Line, Bar } from 'react-chartjs-2';
-import AdminNavbar from './AdminNavbar';  // Import the Navbar component
-import AdminSidebar from './AdminSidebar'; // Import the Sidebar component
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, BarElement } from 'chart.js';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement
-);
+function AdminDashboard() {
+  const [dashboardData, setDashboardData] = useState({
+    totalLoans: 0,
+    activeLoans: 0,
+    totalUsers: 0,
+    newUsers: 0,
+  });
 
-const AdminDashboard = () => {
-  const lineData = {
-    labels: ['Apr 1', 'Apr 5', 'Apr 10', 'Apr 15', 'Apr 20', 'Apr 25', 'Apr 30'],
-    datasets: [
-      {
-        label: 'Sessions',
-        data: [5000, 8000, 10000, 13000, 15000, 18000, 20000],
-        fill: true,
-        backgroundColor: 'rgba(79, 70, 229, 0.3)',
-        borderColor: 'rgba(79, 70, 229, 0.8)',
-      },
-    ],
-  };
-
-  const barData = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-    datasets: [
-      {
-        label: 'Page Views and Downloads',
-        data: [12000, 15000, 13000, 17000, 18000, 14000, 16000],
-        backgroundColor: 'rgba(16, 185, 129, 0.7)',
-      },
-    ],
-  };
+  useEffect(() => {
+    // Fetch data from the backend
+    axios.get('http://localhost:5000/api/admin/dashboard')
+      .then(response => {
+        setDashboardData(response.data);
+      })
+      .catch(error => {
+        console.error("There was an error fetching the data!", error);
+      });
+  }, []);
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
-      <AdminSidebar />  {/* Include Sidebar component */}
-      <div className="flex-1 p-6">
-        <AdminNavbar />  {/* Include Navbar component */}
-        <div className="grid grid-cols-2 gap-4 mb-4 mt-6">
-          <div className="p-4 bg-white shadow rounded-lg">
-            <h2 className="text-xl font-semibold text-gray-700">Users</h2>
-            <p className="text-2xl font-bold text-gray-800">14k</p>
-            <p className="text-green-500">+25%</p>
+    <div className="min-h-screen bg-gray-100 p-4">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-3xl font-bold text-gray-800 mb-6">Admin Dashboard</h1>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Total Loans */}
+          <div className="bg-white shadow-md rounded-lg p-6">
+            <h2 className="text-xl font-semibold text-gray-700">Total Loans</h2>
+            <p className="text-2xl font-bold text-gray-900">{dashboardData.totalLoans}</p>
           </div>
-          <div className="p-4 bg-white shadow rounded-lg">
-            <h2 className="text-xl font-semibold text-gray-700">Conversions</h2>
-            <p className="text-2xl font-bold text-gray-800">325</p>
-            <p className="text-red-500">-25%</p>
+          
+          {/* Active Loans */}
+          <div className="bg-white shadow-md rounded-lg p-6">
+            <h2 className="text-xl font-semibold text-gray-700">Active Loans</h2>
+            <p className="text-2xl font-bold text-gray-900">{dashboardData.activeLoans}</p>
           </div>
-          <div className="p-4 bg-white shadow rounded-lg">
-            <h2 className="text-xl font-semibold text-gray-700">Event Count</h2>
-            <p className="text-2xl font-bold text-gray-800">200k</p>
+          
+          {/* Total Users */}
+          <div className="bg-white shadow-md rounded-lg p-6">
+            <h2 className="text-xl font-semibold text-gray-700">Total Users</h2>
+            <p className="text-2xl font-bold text-gray-900">{dashboardData.totalUsers}</p>
           </div>
-          <div className="p-4 bg-white shadow rounded-lg">
-            <h2 className="text-xl font-semibold text-gray-700">Sessions</h2>
-            <Line data={lineData} />
+          
+          {/* New Users */}
+          <div className="bg-white shadow-md rounded-lg p-6">
+            <h2 className="text-xl font-semibold text-gray-700">New Users</h2>
+            <p className="text-2xl font-bold text-gray-900">{dashboardData.newUsers}</p>
           </div>
-        </div>
-        <div className="p-4 bg-white shadow rounded-lg">
-          <h2 className="text-xl font-semibold text-gray-700">Page Views and Downloads</h2>
-          <Bar data={barData} />
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default AdminDashboard;
