@@ -42,3 +42,5 @@ export const toggleUserActivation = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
+
+
