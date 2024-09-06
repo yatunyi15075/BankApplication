@@ -6,7 +6,7 @@ const SignIn = () => {
     <div className="flex h-screen">
       {/* Left Side - Image */}
       <div className="w-1/2 bg-gray-100">
-        <img src="/assets/image" alt="SignIn" className="object-cover w-full h-full" />
+        <img src="/src/assets/auth.png" alt="SignIn" className="object-cover w-full h-full" />
       </div>
 
       {/* Right Side - Form */}
