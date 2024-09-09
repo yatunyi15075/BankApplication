@@ -1,7 +1,7 @@
-// for lender
-
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/database.js'; // Assume you have configured this
+import config from '../config.js'; 
+
+const { sequelize } = config; 
 
 const Loan = sequelize.define('Loan', {
     amount: {

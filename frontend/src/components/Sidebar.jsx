@@ -10,20 +10,21 @@ const Sidebar = ({ userRole }) => {
       </div>
       <nav className="flex-1 mt-6">
         <ul>
-          <li>
+          {userRole === 'admin' && (
+            <>
+            <li>
             <Link
-              to="/dashboard"
+              to="/admin/dashboard"
               className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
             >
               <FaHome className="mr-3 text-lg" />
               Dashboard
             </Link>
           </li>
-          {userRole === 'admin' && (
-            <>
+
               <li>
                 <Link
-                  to="/users"
+                  to="/admin/user-management"
                   className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
                 >
                   <FaUser className="mr-3 text-lg" />
@@ -32,7 +33,7 @@ const Sidebar = ({ userRole }) => {
               </li>
               <li>
                 <Link
-                  to="/loans"
+                  to="/admin/loan-management"
                   className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
                 >
                   <FaTasks className="mr-3 text-lg" />
@@ -41,11 +42,29 @@ const Sidebar = ({ userRole }) => {
               </li>
               <li>
                 <Link
-                  to="/reports"
+                  to="/admin/report"
                   className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
                 >
                   <FaChartBar className="mr-3 text-lg" />
                   Reports
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/admin/platform-settings"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaChartBar className="mr-3 text-lg" />
+                  Settings
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/admin/support-management"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaChartBar className="mr-3 text-lg" />
+                  Support
                 </Link>
               </li>
             </>
@@ -54,16 +73,77 @@ const Sidebar = ({ userRole }) => {
             <>
               <li>
                 <Link
-                  to="/requests"
+                  to="/borrower/dashboard"
                   className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
                 >
                   <FaEnvelope className="mr-3 text-lg" />
-                  Support Requests
+                  Dashboard
                 </Link>
               </li>
+
               <li>
                 <Link
-                  to="/loans"
+                  to="/borrower/loan-request-form"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaEnvelope className="mr-3 text-lg" />
+                  Loan Request
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/borrower/profile"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaEnvelope className="mr-3 text-lg" />
+                  Profile
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/borrower/notifications"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaEnvelope className="mr-3 text-lg" />
+                  Notifications
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/borrower/rgister-user"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaEnvelope className="mr-3 text-lg" />
+                  Register
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/borrower/repayment"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaEnvelope className="mr-3 text-lg" />
+                  Repayments
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/borrower/user-management"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaEnvelope className="mr-3 text-lg" />
+                  User Management
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/borrower/loan-list"
                   className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
                 >
                   <FaDollarSign className="mr-3 text-lg" />
@@ -76,7 +156,16 @@ const Sidebar = ({ userRole }) => {
             <>
               <li>
                 <Link
-                  to="/investments"
+                  to="/lender/dashboard"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaDollarSign className="mr-3 text-lg" />
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/lender/investing-loan"
                   className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
                 >
                   <FaDollarSign className="mr-3 text-lg" />
@@ -85,7 +174,54 @@ const Sidebar = ({ userRole }) => {
               </li>
               <li>
                 <Link
-                  to="/requests"
+                  to="/lender/notifications"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaDollarSign className="mr-3 text-lg" />
+                  Notifications
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/lender/profile"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaDollarSign className="mr-3 text-lg" />
+                  Profile
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/lender/loan-list"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaDollarSign className="mr-3 text-lg" />
+                  Loan List
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/investments"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaDollarSign className="mr-3 text-lg" />
+                  My Investments
+                </Link>
+              </li>
+              <li>
+
+              <Link
+                  to="/lender/repayment"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaDollarSign className="mr-3 text-lg" />
+                  Repayments
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/lender/support"
                   className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
                 >
                   <FaEnvelope className="mr-3 text-lg" />

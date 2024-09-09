@@ -3,8 +3,8 @@ import { getAllLoans, approveLoan, rejectLoan } from '../controllers/loanControl
 
 const router = express.Router();
 
-router.get('/loans', getAllLoans);
-router.put('/loans/:id/approve', approveLoan);
-router.put('/loans/:id/reject', rejectLoan);
+router.get('/', getAllLoans);
+router.put('/:id/approve', approveLoan);
+router.put('/:id/reject', rejectLoan);
 
 export default router;

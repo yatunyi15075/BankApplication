@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { formatDate } from '../utils/dateUtils'; // Utility to format dates
+// import { formatDate } from '../utils/dateUtils'; 
 
 const RepaymentManagement = () => {
   const [repayments, setRepayments] = useState([]);
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
   const [loanId, setLoanId] = useState('');
-  const [borrowerId, setBorrowerId] = useState(''); // Assuming borrowerId is stored in the state
+  const [borrowerId, setBorrowerId] = useState(''); 
 
   useEffect(() => {
     fetchRepaymentHistory();
@@ -93,13 +93,13 @@ const RepaymentManagement = () => {
             </tr>
           </thead>
           <tbody>
-            {repayments.map((repayment) => (
+            {/* {repayments.map((repayment) => (
               <tr key={repayment.id}>
                 <td className="py-2 px-4 border-b">{repayment.amount}</td>
                 <td className="py-2 px-4 border-b">{formatDate(repayment.date)}</td>
                 <td className="py-2 px-4 border-b">{repayment.loanId}</td>
               </tr>
-            ))}
+            ))} */}
           </tbody>
         </table>
       </div>

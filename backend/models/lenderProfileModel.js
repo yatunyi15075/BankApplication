@@ -1,5 +1,7 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/database.js';  // Assuming you have a database.js file for Sequelize connection
+import config from '../config.js'; 
+
+const { sequelize } = config; 
 
 const LenderProfile = sequelize.define('LenderProfile', {
     userId: {
@@ -7,7 +9,7 @@ const LenderProfile = sequelize.define('LenderProfile', {
         allowNull: false,
         unique: true,
         references: {
-            model: 'Users',  // Assuming 'Users' is your user model
+            model: 'Users', 
             key: 'id'
         }
     },

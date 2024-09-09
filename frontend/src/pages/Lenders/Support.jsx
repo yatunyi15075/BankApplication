@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Support = () => {
+const LenderSupport = () => {
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
 
@@ -44,4 +44,4 @@ const Support = () => {
     );
 };
 
-export default Support;
+export default LenderSupport;

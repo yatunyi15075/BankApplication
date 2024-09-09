@@ -1,7 +1,9 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/database.js';
+import config from '../config.js'; 
 
-const Loan = sequelize.define('Loan', {
+const { sequelize } = config; 
+
+const Loan = sequelize.define('Loan-state', {
   borrowerId: {
     type: DataTypes.INTEGER,
     allowNull: false,

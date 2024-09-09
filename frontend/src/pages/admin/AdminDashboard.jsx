@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import AdminNavbar from './AdminNavbar';
 
 function AdminDashboard() {
   const [dashboardData, setDashboardData] = useState({
@@ -22,6 +23,7 @@ function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
+      <AdminNavbar/>
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-800 mb-6">Admin Dashboard</h1>
         

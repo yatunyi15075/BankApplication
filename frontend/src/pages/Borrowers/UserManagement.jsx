@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const UserManagement = () => {
+const BorrowerUserManagement = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -57,7 +57,7 @@ const UserManagement = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map(user => (
+          {/* {users.map(user => (
             <tr key={user.id} className="border-b border-gray-200">
               <td className="p-4">{user.name}</td>
               <td className="p-4">{user.email}</td>
@@ -77,11 +77,11 @@ const UserManagement = () => {
                 </button>
               </td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
       </table>
     </div>
   );
 };
 
-export default UserManagement;
+export default BorrowerUserManagement;

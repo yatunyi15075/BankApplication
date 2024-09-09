@@ -1,5 +1,7 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/database.js';
+import config from '../config.js'; 
+
+const { sequelize } = config; 
 
 const SupportRequest = sequelize.define('SupportRequest', {
     id: {
@@ -20,10 +22,11 @@ const SupportRequest = sequelize.define('SupportRequest', {
         allowNull: false,
     },
     status: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: 'Pending',
-    },
+        type: String,
+        enum: ['Pending', 'Resolved'],
+        default: 'Pending',
+      },
+    
 }, {
     timestamps: true,
 });

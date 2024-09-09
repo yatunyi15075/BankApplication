@@ -1,9 +1,9 @@
 import express from 'express';
-import { getNotifications } from '../controllers/notification.controller.js';
-import authMiddleware from '../middleware/authMiddleware.js'; // Assuming you have an authentication middleware
+import { getNotifications } from '../controllers/notificationController.js';
+// import authMiddleware from '../middleware/authMiddleware.js'; 
 
 const router = express.Router();
 
-router.get('/notifications', authMiddleware, getNotifications);
+router.get('/',  getNotifications);
 
 export default router;

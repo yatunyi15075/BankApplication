@@ -31,7 +31,7 @@ const LoanList = () => {
           </tr>
         </thead>
         <tbody>
-          {loans.map((loan) => (
+          {/* {loans.map((loan) => (
             <tr key={loan.id}>
               <td className="py-2 px-4 border-b">{loan.amount}</td>
               <td className="py-2 px-4 border-b">{loan.term}</td>
@@ -39,7 +39,7 @@ const LoanList = () => {
               <td className="py-2 px-4 border-b">{loan.interestRate}%</td>
               <td className="py-2 px-4 border-b">{loan.status}</td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
       </table>
     </div>

@@ -1,12 +1,12 @@
 import express from 'express';
-import { createRepayment, getRepaymentHistory } from '../controllers/repaymentController.js';
+import { createRepayment, getRepaymentHistory } from '../controllers/borrowerRepaymentController.js';
 
 const router = express.Router();
 
 // Route to create a repayment
-router.post('/repayments', createRepayment);
+router.post('/', createRepayment);
 
 // Route to get repayment history for a borrower
-router.get('/repayments/:borrowerId', getRepaymentHistory);
+router.get('/:borrowerId', getRepaymentHistory);
 
 export default router;

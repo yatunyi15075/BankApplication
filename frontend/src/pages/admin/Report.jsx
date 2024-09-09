@@ -25,8 +25,11 @@ const Report = () => {
       <h1 className="text-xl font-bold mb-4">Loan Report</h1>
       <ul className="list-disc pl-5">
         <li>Total Loans: {reportData.totalLoans}</li>
+        <li>Total Funds:</li>
+        <li>Total Repayments: </li>
+{/* 
         <li>Total Funds: ${reportData.totalFunds.toFixed(2)}</li>
-        <li>Total Repayments: ${reportData.totalRepayments.toFixed(2)}</li>
+        <li>Total Repayments: ${reportData.totalRepayments.toFixed(2)}</li> */}
         <li>Active Loans: {reportData.activeLoans}</li>
         <li>Overdue Loans: {reportData.overdueLoans}</li>
       </ul>

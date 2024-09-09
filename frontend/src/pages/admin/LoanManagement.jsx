@@ -50,7 +50,7 @@ const LoanManagement = () => {
           </tr>
         </thead>
         <tbody>
-          {loans.map((loan) => (
+          {/* {loans.map((loan) => (
             <tr key={loan.id}>
               <td className="py-2 px-4 border-b">{loan.borrowerId}</td>
               <td className="py-2 px-4 border-b">${loan.amount}</td>
@@ -66,7 +66,7 @@ const LoanManagement = () => {
                 )}
               </td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
       </table>
     </div>

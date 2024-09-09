@@ -1,9 +1,10 @@
 import express from 'express';
-import { getRepayments } from '../controllers/repayment.controller.js';
-import authMiddleware from '../middleware/authMiddleware.js'; // Assuming you have an authentication middleware
+import { getRepayments } from '../controllers/repaymentController.js';
+// import authMiddleware from '../middleware/authMiddleware.js'; 
+
 
 const router = express.Router();
 
-router.get('/repayments', authMiddleware, getRepayments);
+router.get('/', getRepayments);
 
 export default router;

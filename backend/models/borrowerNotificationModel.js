@@ -1,7 +1,9 @@
 import { DataTypes } from 'sequelize';
-import db from '../config/database.js';
+import config from '../config.js'; 
 
-const Notification = db.define('Notification', {
+const { sequelize } = config; 
+
+const Notification =  sequelize.define('borrowser-notification', {
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,

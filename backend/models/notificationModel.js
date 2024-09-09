@@ -1,5 +1,7 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/database.js';
+import config from '../config.js'; 
+
+const { sequelize } = config; 
 
 const Notification = sequelize.define('Notification', {
     id: {

@@ -1,11 +1,13 @@
 import React from 'react'
+import Navbar from '../../components/Navbar'
 
-const Dashboard = () => {
+const BorrowerDashboard = () => {
   return (
     <div>
+      <Navbar />
       Borrower
     </div>
   )
 }
 
-export default Dashboard
+export default BorrowerDashboard

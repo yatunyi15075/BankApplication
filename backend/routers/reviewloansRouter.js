@@ -1,9 +1,9 @@
 import express from 'express';
-import { getAllLoans } from '../controllers/loan.controller.js';
+import { getAllLoans } from '../controllers/reviewloansController.js';
 
 const router = express.Router();
 
 // Route to get all approved loans
-router.get('/loans', getAllLoans);
+router.get('/', getAllLoans);
 
 export default router;

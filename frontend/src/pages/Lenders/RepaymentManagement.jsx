@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const RepaymentManagement = () => {
+const LenderRepaymentManagement = () => {
     const [repayments, setRepayments] = useState([]);
 
     useEffect(() => {
@@ -48,4 +48,4 @@ const RepaymentManagement = () => {
     );
 };
 
-export default RepaymentManagement;
+export default LenderRepaymentManagement;

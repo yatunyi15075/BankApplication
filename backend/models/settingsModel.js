@@ -1,6 +1,8 @@
 // models/Setting.js
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/database.js';
+import config from '../config.js'; 
+
+const { sequelize } = config; 
 
 const Setting = sequelize.define('Setting', {
     interestRate: {

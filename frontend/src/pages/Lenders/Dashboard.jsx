@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Dashboard = () => {
+const LenderDashboard = () => {
   return (
     <div>
-      
+      Lender
     </div>
   )
 }
 
-export default Dashboard
+export default LenderDashboard

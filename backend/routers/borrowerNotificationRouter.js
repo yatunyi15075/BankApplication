@@ -1,10 +1,11 @@
 import express from 'express';
-import { createNotification, getUserNotifications, updateNotificationStatus } from '../controllers/notificationController.js';
+import { createNotification, getUserNotifications, updateNotificationStatus }
+ from '../controllers/borrowerNotificationController.js';
 
 const router = express.Router();
 
-router.post('/notifications', createNotification);
-router.get('/notifications/:userId', getUserNotifications);
-router.put('/notifications/:notificationId', updateNotificationStatus);
+router.post('/', createNotification);
+router.get('/:userId', getUserNotifications);
+router.put('/:notificationId', updateNotificationStatus);
 
 export default router;

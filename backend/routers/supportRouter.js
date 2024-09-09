@@ -1,9 +1,13 @@
 import express from 'express';
-import { createSupportRequest } from '../controllers/support.controller.js';
-import authMiddleware from '../middleware/authMiddleware.js'; // Assuming you have an authentication middleware
+import { createSupportRequest, getSupportRequests, updateSupportRequest } 
+from '../controllers/supportController.js';
+
+// import authMiddleware from '../middleware/authMiddleware.js'; 
 
 const router = express.Router();
 
-router.post('/support', authMiddleware, createSupportRequest);
+router.get('/', getSupportRequests);
+router.patch('/:id', updateSupportRequest);
+router.post('/', createSupportRequest);
 
 export default router;

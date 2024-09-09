@@ -55,7 +55,7 @@ const SupportRequests = () => {
         <p>Loading...</p>
       ) : (
         <ul className="list-disc pl-5">
-          {requests.map((request, index) => (
+          {/* {requests.map((request, index) => (
             <li key={index} className="mb-2">
               <div className="p-4 border border-gray-300 rounded-lg">
                 <p className="font-semibold">Request:</p>
@@ -63,7 +63,7 @@ const SupportRequests = () => {
                 <p className="mt-2 text-sm text-gray-600">Status: {request.status}</p>
               </div>
             </li>
-          ))}
+          ))} */}
         </ul>
       )}
     </div>

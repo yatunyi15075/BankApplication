@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Notifications = () => {
+const LenderNotifications = () => {
     const [notifications, setNotifications] = useState([]);
 
     useEffect(() => {
@@ -39,4 +39,4 @@ const Notifications = () => {
     );
 };
 
-export default Notifications;
+export default LenderNotifications;
