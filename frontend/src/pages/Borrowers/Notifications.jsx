@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Sidebar from '../Borrowers/BorrowerSidebar';
+
 
 const Notifications = ({ userId }) => {
   const [notifications, setNotifications] = useState([]);
@@ -9,7 +11,7 @@ const Notifications = ({ userId }) => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get(`/api/notifications/${userId}`);
+        const response = await axios.get(`http://localhost:5000/api/notifications/${userId}`);
         setNotifications(response.data);
       } catch (error) {
         toast.error('Failed to fetch notifications');
@@ -32,6 +34,8 @@ const Notifications = ({ userId }) => {
   };
 
   return (
+    <div className="flex">
+      <Sidebar userRole="borrower" />
     <div className="p-4 bg-gray-100 rounded-lg shadow-md">
       <h2 className="text-xl font-semibold mb-4">Your Notifications</h2>
       <ul>
@@ -52,6 +56,7 @@ const Notifications = ({ userId }) => {
         ))} */}
       </ul>
       <ToastContainer />
+    </div>
     </div>
   );
 };

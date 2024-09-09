@@ -1,5 +1,3 @@
-import Investment from '../models/investmentModel.js';
-import Loan from '../models/loanModel.js';
 
 // Invest in a loan
 export const investInLoan = async (req, res) => {
@@ -13,7 +11,7 @@ export const investInLoan = async (req, res) => {
         }
 
         const investment = await Investment.create({ amount, lenderId, loanId });
-        
+
         // Optionally: Update loan status to 'Funded' if needed
         // await loan.update({ status: 'Funded' });
 
@@ -27,7 +25,10 @@ export const investInLoan = async (req, res) => {
 export const getLenderInvestments = async (req, res) => {
     try {
         const lenderId = req.user.id;
-        const investments = await Investment.findAll({ where: { lenderId } });
+        const investments = await Investment.findAll({
+            where: { lenderId },
+            include: [{ model: Loan, attributes: ['amount', 'interestRate', 'term'] }], // Include loan details
+        });
         res.status(200).json(investments);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching investments', error });

@@ -1,3 +1,5 @@
+//loan management of admin
+
 import express from 'express';
 import { getAllLoans, approveLoan, rejectLoan } from '../controllers/loanController.js';
 

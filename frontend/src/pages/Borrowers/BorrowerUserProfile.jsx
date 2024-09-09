@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Sidebar from '../Borrowers/BorrowerSidebar';
+
 
 const UserProfile = ({ userId }) => {
     const [user, setUser] = useState({
@@ -11,7 +13,7 @@ const UserProfile = ({ userId }) => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get(`/api/users/profile/${userId}`);
+                const response = await axios.get(`http://localhost:5000/api/users/profile/${userId}`);
                 setUser(response.data.user);
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -31,7 +33,7 @@ const UserProfile = ({ userId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`/api/users/profile/${userId}`, user);
+            await axios.put(`http://localhost:5000/api/users/profile/${userId}`, user);
             alert('Profile updated successfully');
         } catch (error) {
             console.error('Error updating profile:', error);
@@ -40,8 +42,11 @@ const UserProfile = ({ userId }) => {
     };
 
     if (loading) return <div>Loading...</div>;
-
+    if (!user) return <div>User data not found</div>; // Add this check
+    
     return (
+        <div className="flex">
+      <Sidebar userRole="borrower" />
         <div className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Update Profile</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -51,7 +56,7 @@ const UserProfile = ({ userId }) => {
                         type="text"
                         id="name"
                         name="name"
-                        value={user.name}
+                        value={user.name || ''}
                         onChange={handleChange}
                         className="mt-1 p-2 border border-gray-300 rounded-md shadow-sm w-full"
                     />
@@ -62,7 +67,7 @@ const UserProfile = ({ userId }) => {
                         type="email"
                         id="email"
                         name="email"
-                        value={user.email}
+                        value={user.email || ''}
                         onChange={handleChange}
                         className="mt-1 p-2 border border-gray-300 rounded-md shadow-sm w-full"
                     />
@@ -74,6 +79,7 @@ const UserProfile = ({ userId }) => {
                     Update Profile
                 </button>
             </form>
+        </div>
         </div>
     );
 };

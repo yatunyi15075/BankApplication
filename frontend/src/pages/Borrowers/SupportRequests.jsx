@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Sidebar from '../Borrowers/BorrowerSidebar';
+
 
 const SupportRequests = () => {
   const [requestText, setRequestText] = useState('');
@@ -9,7 +11,7 @@ const SupportRequests = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const response = await axios.get('/api/support/requests');
+        const response = await axios.get('http://localhost:5000/api/support/requests');
         setRequests(response.data);
         setLoading(false);
       } catch (error) {
@@ -24,7 +26,7 @@ const SupportRequests = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/support/requests', { text: requestText });
+      await axios.post('http://localhost:5000/api/support/requests', { text: requestText });
       setRequestText('');
       setRequests([...requests, { text: requestText, status: 'Pending' }]);
     } catch (error) {
@@ -33,6 +35,8 @@ const SupportRequests = () => {
   };
 
   return (
+    <div className="flex">
+      <Sidebar userRole="borrower" />
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Support Requests</h1>
       <form onSubmit={handleSubmit} className="mb-6">
@@ -66,6 +70,7 @@ const SupportRequests = () => {
           ))} */}
         </ul>
       )}
+    </div>
     </div>
   );
 };

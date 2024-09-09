@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -15,10 +17,14 @@ const SignIn = () => {
 
       if (response.data.token) {
         const token = response.data.token;
+        const userRole = response.data.role; // Ensure role is retrieved from the response
+        
+        // Store the JWT token and role in local storage
+        localStorage.setItem('token', token);
+        localStorage.setItem('role', userRole);
 
-        // Decode the token to get user role
-        const decodedToken = jwt_decode(token);  // use jwt-decode library
-        const userRole = decodedToken.role;
+        // Display success toast message
+        toast.success('Login successful!');
 
         // Redirect based on role
         if (userRole === 'admin') navigate('/admin/dashboard');
@@ -26,6 +32,9 @@ const SignIn = () => {
         else navigate('/borrower/dashboard');
       }
     } catch (error) {
+      // Extract error message and show toast notification
+      const errorMessage = error.response && error.response.data ? error.response.data.message : 'Login failed. Please try again.';
+      toast.error(errorMessage);
       console.error('SignIn failed', error);
     }
   };
@@ -62,6 +71,8 @@ const SignIn = () => {
             Sign In
           </button>
         </form>
+        <ToastContainer />
+        <div to="/register"> Don't have an account? Register </div>
       </div>
     </div>
   );

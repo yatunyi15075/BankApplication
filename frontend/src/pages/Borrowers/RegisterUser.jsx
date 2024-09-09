@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Sidebar from '../Borrowers/BorrowerSidebar';
+
 
 const RegisterUser = () => {
     const [formData, setFormData] = useState({
@@ -17,7 +19,7 @@ const RegisterUser = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/api/users/register', formData);
+            const response = await axios.post('http://localhost:5000/api/users/register', formData);
             alert('Registration successful!');
             // Handle successful registration (e.g., redirect or store token)
         } catch (error) {
@@ -27,6 +29,8 @@ const RegisterUser = () => {
     };
 
     return (
+        <div className="flex">
+      <Sidebar userRole="borrower" />
         <div className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Register</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -83,6 +87,7 @@ const RegisterUser = () => {
                     Register
                 </button>
             </form>
+        </div>
         </div>
     );
 };

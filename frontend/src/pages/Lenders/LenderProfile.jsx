@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';  // Assuming you're using React Toastify for notifications
+import Sidebar from '../Lenders/LenderSidebar';
+
 
 const LenderProfile = () => {
     const [profile, setProfile] = useState({
@@ -15,7 +17,7 @@ const LenderProfile = () => {
         // Fetch lender profile
         const fetchProfile = async () => {
             try {
-                const response = await axios.get('/api/lender/profile');
+                const response = await axios.get('http://localhost:5000/api/lender/profile');
                 setProfile(response.data);
             } catch (error) {
                 toast.error('Failed to load profile');
@@ -31,7 +33,7 @@ const LenderProfile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put('/api/lender/profile', profile);
+            const response = await axios.put('http://localhost:5000/api/lender/profile', profile);
             toast.success('Profile updated successfully');
             setProfile(response.data);
         } catch (error) {
@@ -40,6 +42,8 @@ const LenderProfile = () => {
     };
 
     return (
+        <div className="flex">
+      <Sidebar userRole="lender" />
         <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
             <h2 className="text-2xl font-semibold mb-6">Edit Profile</h2>
             <form onSubmit={handleSubmit}>
@@ -101,6 +105,7 @@ const LenderProfile = () => {
                     Save Changes
                 </button>
             </form>
+        </div>
         </div>
     );
 };

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
-    <section className="bg-blue-600 text-white h-screen flex flex-col md:flex-row justify-center items-center pt-20 md:pt-0">
+    <section className="bg-blue-600 text-white w-full h-screen flex flex-col md:flex-row justify-center items-center pt-20 md:pt-0">
       {/* Left Side - Text */}
       <div className="flex flex-col justify-center items-start space-y-4 px-4 md:w-1/2">
         <h1 className="text-4xl md:text-6xl font-bold">

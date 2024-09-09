@@ -2,7 +2,7 @@ import Loan from '../models/loanModel.js';
 
 export const getAllLoans = async (req, res) => {
   try {
-    const loans = await Loan.findAll();
+    const loans = await Loan.findAll();  // You might want to add more filters or include related models if needed
     res.json(loans);
   } catch (error) {
     res.status(500).json({ error: error.message });

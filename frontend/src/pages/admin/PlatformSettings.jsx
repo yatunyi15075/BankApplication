@@ -1,6 +1,8 @@
 // src/components/PlatformSettings.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import AdminNavbar from './AdminNavbar';
+import Sidebar from './AdminSidebar';
 
 const PlatformSettings = () => {
     const [settings, setSettings] = useState({
@@ -11,7 +13,7 @@ const PlatformSettings = () => {
     
     useEffect(() => {
         // Fetch current settings on component mount
-        axios.get('/api/settings')
+        axios.get('http://localhost:5000/api/settings')
             .then(response => {
                 setSettings(response.data);
             })
@@ -24,13 +26,16 @@ const PlatformSettings = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.put('/api/settings', settings)
+        axios.put('http://localhost:5000/api/settings', settings)
             .then(response => alert('Settings updated successfully'))
             .catch(error => console.error('Error updating settings:', error));
     };
     
     return (
+        <div className="flex min-h-screen">
+        <Sidebar userRole="admin" />
         <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded">
+           <AdminNavbar />
             <h1 className="text-2xl font-bold mb-6">Platform Settings</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="flex flex-col">
@@ -73,6 +78,7 @@ const PlatformSettings = () => {
                     Save Settings
                 </button>
             </form>
+        </div>
         </div>
     );
 };

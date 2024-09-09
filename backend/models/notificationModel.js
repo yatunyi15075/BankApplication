@@ -25,6 +25,10 @@ const Notification = sequelize.define('Notification', {
         type: DataTypes.TEXT,
         allowNull: false,
     },
+    type: {
+        type: DataTypes.STRING, // e.g., 'loan_status', 'repayment_update', 'announcement'
+        allowNull: false,
+    },
 }, {
     timestamps: true,
 });

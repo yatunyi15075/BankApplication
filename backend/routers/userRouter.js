@@ -1,10 +1,12 @@
+//has login/register and also user management codes
+
 import { Router } from 'express';
 import { getAllUsers, updateUserRole, toggleUserActivation, registerUser, loginUser, updateUserProfile }
  from '../controllers/userController.js';
 
 const router = Router();
 
-router.get('/users', getAllUsers); // Get all users
+router.get('/users', getAllUsers); 
 router.put('/users/:id/role', updateUserRole); // Update user role
 router.put('/users/:id/activation', toggleUserActivation); // Toggle user activation status
 

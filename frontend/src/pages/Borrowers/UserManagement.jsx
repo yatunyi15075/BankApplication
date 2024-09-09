@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Sidebar from '../Borrowers/BorrowerSidebar';
+
 
 const BorrowerUserManagement = () => {
   const [users, setUsers] = useState([]);
@@ -9,7 +11,7 @@ const BorrowerUserManagement = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('/api/admin/users');
+        const response = await axios.get('http://localhost:5000/api/admin/users');
         setUsers(response.data);
         setLoading(false);
       } catch (err) {
@@ -23,7 +25,7 @@ const BorrowerUserManagement = () => {
 
   const handleDeactivate = async (userId) => {
     try {
-      await axios.post(`/api/admin/users/${userId}/deactivate`);
+      await axios.post(`http://localhost:5000/api/admin/users/${userId}/deactivate`);
       setUsers(users.map(user => 
         user.id === userId ? { ...user, status: 'inactive' } : user
       ));
@@ -34,7 +36,7 @@ const BorrowerUserManagement = () => {
 
   const handleDelete = async (userId) => {
     try {
-      await axios.delete(`/api/admin/users/${userId}`);
+      await axios.delete(`http://localhost:5000/api/admin/users/${userId}`);
       setUsers(users.filter(user => user.id !== userId));
     } catch (err) {
       setError(err.message);
@@ -45,6 +47,8 @@ const BorrowerUserManagement = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
+    <div className="flex">
+      <Sidebar userRole="borrower" />
     <div className="p-4">
       <h1 className="text-xl font-bold mb-4">User Management</h1>
       <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
@@ -80,6 +84,8 @@ const BorrowerUserManagement = () => {
           ))} */}
         </tbody>
       </table>
+    </div>
+    
     </div>
   );
 };

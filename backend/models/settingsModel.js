@@ -1,4 +1,3 @@
-// models/Setting.js
 import { DataTypes } from 'sequelize';
 import config from '../config.js'; 
 
@@ -17,9 +16,20 @@ const Setting = sequelize.define('Setting', {
         type: DataTypes.FLOAT,
         allowNull: false,
     },
+    termsOfService: {
+        type: DataTypes.TEXT, // Storing long text for terms of service
+        allowNull: true, // Can be nullable if optional
+    },
+    privacyPolicy: {
+        type: DataTypes.TEXT, // Storing long text for privacy policy
+        allowNull: true, // Can be nullable if optional
+    },
 }, {
     timestamps: false,
     tableName: 'settings',
 });
 
 export default Setting;
+
+
+

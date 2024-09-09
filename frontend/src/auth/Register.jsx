@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -20,8 +22,13 @@ const Register = () => {
         role,
       });
 
+
+
       if (response.data.token) {
         const token = response.data.token;
+        toast.success('Registration successful!', {
+          position: toast.POSITION.TOP_RIGHT,
+        })
         // Redirect based on role
         if (role === 'admin') navigate('/admin/dashboard');
         else if (role === 'lender') navigate('/lender/dashboard');
@@ -85,6 +92,7 @@ const Register = () => {
             Register
           </button>
         </form>
+        <div to="/signin"> Already have an account? Login </div>
       </div>
     </div>
   );

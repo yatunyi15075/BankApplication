@@ -1,3 +1,4 @@
+// investmentModel.js
 import { DataTypes } from 'sequelize';
 import config from '../config.js'; 
 
@@ -15,6 +16,14 @@ const Investment = sequelize.define('Investment', {
     loanId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+    },
+    status: { // Optional: Track investment status
+        type: DataTypes.ENUM('pending', 'funded'),
+        defaultValue: 'pending',
+    },
+    repaymentProgress: { // Optional: Track repayment progress
+        type: DataTypes.FLOAT,
+        defaultValue: 0,
     },
 }, {
     timestamps: true,

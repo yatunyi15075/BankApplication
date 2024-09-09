@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
 import Home from './pages/LandingPage/Home';
 import Register from './auth/Register';
 import SignIn from './auth/SignIn';
@@ -36,15 +35,12 @@ import LenderRepaymentManagement from './pages/Lenders/RepaymentManagement';
 import LenderSupport from './pages/Lenders/Support';
 
 const App = () => {
-  // Simulate user role; this should come from authentication context or state
-  const [userRole, setUserRole] = useState('admin');
 
   return (
     <Router>
       <div className="flex">
-        {/* Conditionally render Sidebar based on the current route */}
-        <SidebarWrapper userRole={userRole} />
-        <div className="flex-1 p-6">
+
+        <div className="flex-1 p-0">
           <Routes>
 
             <Route path="/" element={<Home />} />
@@ -58,7 +54,7 @@ const App = () => {
             <Route path="/borrower/loan-list" element={<LoanList />} />
             <Route path="/borrower/loan-request-form" element={<LoanRequestForm />} />
             <Route path="/borrower/notifications" element={<Notifications/>} />
-            <Route path="/borrower/rgister-user" element={<RegisterUser />} />
+            <Route path="/borrower/register-user" element={<RegisterUser />} />
             <Route path="/borrower/repayment" element={<RepaymentManagement />} />
             <Route path="/borrower/support-request" element={<SupportRequests  />} />
             <Route path="/borrower/user-management" element={<BorrowerUserManagement />} />
@@ -89,21 +85,5 @@ const App = () => {
   );
 };
 
-// Component to conditionally render Sidebar
-const SidebarWrapper = ({ userRole }) => {
-  const location = useLocation();
-
-  // List of paths where the sidebar should not be visible
-  const hideSidebarPaths = ['/', '/register', '/signin'];
-  
-
-  return (
-    <>
-      {!hideSidebarPaths.includes(location.pathname) && (
-        <Sidebar userRole={userRole} />
-      )}
-    </>
-  );
-};
 
 export default App;

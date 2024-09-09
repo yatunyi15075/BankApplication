@@ -22,11 +22,9 @@ const SupportRequest = sequelize.define('SupportRequest', {
         allowNull: false,
     },
     status: {
-        type: String,
-        enum: ['Pending', 'Resolved'],
-        default: 'Pending',
-      },
-    
+        type: DataTypes.ENUM('Pending', 'In Progress', 'Resolved'),
+        defaultValue: 'Pending',
+    },
 }, {
     timestamps: true,
 });

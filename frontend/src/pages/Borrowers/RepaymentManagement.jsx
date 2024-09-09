@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // import { formatDate } from '../utils/dateUtils'; 
+import Sidebar from '../Borrowers/BorrowerSidebar';
 
 const RepaymentManagement = () => {
   const [repayments, setRepayments] = useState([]);
@@ -15,7 +16,7 @@ const RepaymentManagement = () => {
 
   const fetchRepaymentHistory = async () => {
     try {
-      const response = await axios.get(`/api/repayments/${borrowerId}`);
+      const response = await axios.get(`http://localhost:5000/api/repayments/${borrowerId}`);
       setRepayments(response.data);
     } catch (error) {
       console.error('Error fetching repayment history:', error);
@@ -25,7 +26,7 @@ const RepaymentManagement = () => {
   const handleRepaymentSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/repayments', { amount, date, loanId, borrowerId });
+      await axios.post('http://localhost:5000/api/repayments', { amount, date, loanId, borrowerId });
       fetchRepaymentHistory();
       setAmount('');
       setDate('');
@@ -36,6 +37,8 @@ const RepaymentManagement = () => {
   };
 
   return (
+    <div className="flex">
+      <Sidebar userRole="borrower" />
     <div className="container mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">Repayment Management</h2>
 
@@ -103,6 +106,7 @@ const RepaymentManagement = () => {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   );
 };

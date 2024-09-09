@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Sidebar from '../Borrowers/BorrowerSidebar';
+
 
 const LoanRequestForm = () => {
   const [formData, setFormData] = useState({
@@ -27,6 +29,8 @@ const LoanRequestForm = () => {
   };
 
   return (
+    <div className="flex">
+      <Sidebar userRole="borrower" />
     <div className="max-w-md mx-auto p-4 bg-white shadow-md rounded">
       <h2 className="text-xl font-bold mb-4">Request a Loan</h2>
       <form onSubmit={handleSubmit}>
@@ -92,6 +96,7 @@ const LoanRequestForm = () => {
           Submit Request
         </button>
       </form>
+    </div>
     </div>
   );
 };

@@ -1,11 +1,17 @@
+//for admin and lender loan
+
 import { DataTypes } from 'sequelize';
 import config from '../config.js'; 
 
 const { sequelize } = config; 
 
-const Loan = sequelize.define('Loan-state', {
+const Loan = sequelize.define('Loan', {
   borrowerId: {
     type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  borrowerName: {  // Added field
+    type: DataTypes.STRING,
     allowNull: false,
   },
   amount: {
@@ -18,6 +24,10 @@ const Loan = sequelize.define('Loan-state', {
   },
   interestRate: {
     type: DataTypes.DECIMAL(5, 2),
+    allowNull: false,
+  },
+  riskLevel: {  // Added field
+    type: DataTypes.STRING,
     allowNull: false,
   },
   status: {
