@@ -17,7 +17,7 @@ const LenderNotifications = () => {
         };
         fetchNotifications();
     }, []);
-
+ 
     return (
         <div className="flex">
             <Sidebar userRole="lender" />

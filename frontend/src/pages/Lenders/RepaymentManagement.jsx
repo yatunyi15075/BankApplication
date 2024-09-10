@@ -15,7 +15,7 @@ const LenderRepaymentManagement = () => {
             } catch (error) {
                 console.error('Error fetching repayments:', error);
             }
-        };
+        }; 
 
         // Fetch transaction history for the logged-in lender
         const fetchTransactions = async () => {

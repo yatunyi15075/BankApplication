@@ -25,7 +25,7 @@ const InvestingLoan = () => {
   useEffect(() => {
     const fetchInvestments = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/investments'); // Endpoint to fetch investments
+        const response = await axios.get('http://localhost:5000/api/investment'); 
         setInvestments(response.data);
       } catch (error) {
         toast.error(`Error fetching investments: ${error.message}`);
@@ -36,13 +36,13 @@ const InvestingLoan = () => {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post('http://localhost:5000/api/invest/invest', data);
+      await axios.post('http://localhost:5000/api/investment', data);
       toast.success('Investment successful! Your investment has been processed.');
       reset();
     } catch (error) {
       toast.error(`Investment failed: ${error.message}`);
     }
-  };
+  }; 
 
   return (
     <div className="flex">

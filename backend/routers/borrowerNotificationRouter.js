@@ -9,3 +9,4 @@ router.get('/:userId', getUserNotifications);
 router.put('/:notificationId', updateNotificationStatus);
 
 export default router;
+ 

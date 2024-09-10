@@ -38,3 +38,38 @@ export const rejectLoan = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+// Create a loan request (newly added)
+export const createLoanRequest = async (req, res) => {
+  const { amount, term, purpose, interestRate, repaymentSchedule, borrowerId, borrowerName } = req.body;
+
+  try {
+    const newLoan = await Loan.create({
+      borrowerId,
+      borrowerName,
+      amount,
+      term,
+      purpose,
+      interestRate,
+      repaymentSchedule,
+      riskLevel: calculateRiskLevel(amount, term), // Assuming you have a function to calculate risk level
+      status: 'pending',
+    });
+
+    res.status(201).json(newLoan);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Utility function to calculate risk level (example)
+const calculateRiskLevel = (amount, term) => {
+  // Simple risk level logic (You can customize this based on your needs)
+  if (amount > 50000 && term > 12) {
+    return 'High';
+  } else if (amount > 10000 && term <= 12) {
+    return 'Medium';
+  } else {
+    return 'Low';
+  }
+};

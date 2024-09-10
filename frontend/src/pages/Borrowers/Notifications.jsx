@@ -1,3 +1,6 @@
+//httpp for borrower notification for post :  http://localhost:5000/api/borrower-notification
+// for put :  http://localhost:5000/api/borrower-notification/${:notificationId}
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,7 +14,7 @@ const Notifications = ({ userId }) => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/notifications/${userId}`);
+        const response = await axios.get(`http://localhost:5000/api/borrower-notification/${userId}`);
         setNotifications(response.data);
       } catch (error) {
         toast.error('Failed to fetch notifications');

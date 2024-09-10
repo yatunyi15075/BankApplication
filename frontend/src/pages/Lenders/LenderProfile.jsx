@@ -17,7 +17,7 @@ const LenderProfile = () => {
         // Fetch lender profile
         const fetchProfile = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/lender/profile');
+                const response = await axios.get('http://localhost:5000/lender-profile');
                 setProfile(response.data);
             } catch (error) {
                 toast.error('Failed to load profile');
@@ -33,7 +33,7 @@ const LenderProfile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put('http://localhost:5000/api/lender/profile', profile);
+            const response = await axios.put('http://localhost:5000/api/lender-profile', profile);
             toast.success('Profile updated successfully');
             setProfile(response.data);
         } catch (error) {

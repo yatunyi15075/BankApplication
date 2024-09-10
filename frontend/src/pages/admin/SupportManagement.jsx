@@ -27,7 +27,7 @@ const SupportManagement = () => {
     } catch (error) {
       console.error('Error updating support request status', error);
     }
-  };
+  }; 
 
   return (
     <div className="flex min-h-screen">

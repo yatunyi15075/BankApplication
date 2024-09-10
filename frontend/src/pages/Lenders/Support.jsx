@@ -12,9 +12,9 @@ const LenderSupport = () => {
     ]);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); 
         try {
-            await axios.post('/api/support', { message });
+            await axios.post('http://localhost:5000/api/support', { message });
             setStatus('Your message has been sent successfully.');
             setMessage('');
         } catch (error) {

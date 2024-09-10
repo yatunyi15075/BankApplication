@@ -6,17 +6,18 @@ import { getAllUsers, updateUserRole, toggleUserActivation, registerUser, loginU
 
 const router = Router();
 
-router.get('/users', getAllUsers); 
-router.put('/users/:id/role', updateUserRole); // Update user role
-router.put('/users/:id/activation', toggleUserActivation); // Toggle user activation status
+router.get('/', getAllUsers); 
+router.put('/:id/role', updateUserRole); // Update user role
+router.put('/:id/activation', toggleUserActivation); // Toggle user activation status
 
 // Register new user
 router.post('/register', registerUser);
 
 router.post('/login', loginUser);
-
+ 
 
 // Update user profile
-router.put('/profile/:userId', updateUserProfile);
+router.put('/profile/:userId', updateUserProfile); 
 
 export default router;
+ 

@@ -33,7 +33,7 @@ app.use('/api/review-loan', reviewloansRouter);
 app.use('/api/repayments', repaymentRouter);
 app.use('/api/notifications', notificationRouter);
 app.use('/api/loans',  loanRouter);
-app.use('/api/loan-report', loanReportRouter);
+app.use('/api/loan-report', loanReportRouter); 
 app.use('/api/lender-profile', lenderProfileRouter);
 app.use('/api/investment', investmentRouter);
 app.use('/api/borrower-repayment', borrowerRepaymentRouter);

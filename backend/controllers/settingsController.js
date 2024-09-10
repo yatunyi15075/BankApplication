@@ -1,3 +1,6 @@
+// settingsController.js
+import Setting from '../models/settingsModel.js';
+
 export const getSettings = async (req, res) => {
     try {
         const settings = await Setting.findOne();
@@ -7,7 +10,8 @@ export const getSettings = async (req, res) => {
             res.status(404).json({ message: 'Settings not found' });
         }
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        console.error("Error in getSettings:", error);  // Log the error
+        res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
 
@@ -28,7 +32,8 @@ export const updateSettings = async (req, res) => {
             res.status(201).json(settings);
         }
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        console.error("Error in updateSettings:", error);  // Log the error
+        res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
 
@@ -38,9 +43,11 @@ export const createSettings = async (req, res) => {
         const newSettings = await Setting.create({ interestRate, repaymentTerm, fees, termsOfService, privacyPolicy });
         res.status(201).json(newSettings);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        console.error("Error in createSettings:", error);  // Log the error
+        res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
+
 
 export const deleteSettings = async (req, res) => {
     try {

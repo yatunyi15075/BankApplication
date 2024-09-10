@@ -34,7 +34,7 @@ const UserManagement = () => {
             fetchUsers();
         } catch (error) {
             console.error('Error toggling user activation:', error);
-        }
+        } 
     };
 
     const deleteUser = async (id) => {

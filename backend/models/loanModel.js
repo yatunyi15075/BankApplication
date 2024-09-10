@@ -10,7 +10,7 @@ const Loan = sequelize.define('Loan', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  borrowerName: {  // Added field
+  borrowerName: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -26,9 +26,21 @@ const Loan = sequelize.define('Loan', {
     type: DataTypes.DECIMAL(5, 2),
     allowNull: false,
   },
-  riskLevel: {  // Added field
+  purpose: {  // Added field
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  repaymentSchedule: {  // Added field
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  riskLevel: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  repaymentAmount: {
+    type: DataTypes.FLOAT,  // Add this field if it's missing
+    allowNull: true,        // Adjust based on whether null values are allowed
   },
   status: {
     type: DataTypes.ENUM('pending', 'approved', 'rejected'),
@@ -37,5 +49,6 @@ const Loan = sequelize.define('Loan', {
 }, {
   timestamps: true,
 });
+
 
 export default Loan;

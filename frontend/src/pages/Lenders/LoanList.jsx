@@ -1,3 +1,5 @@
+// http for loan list is : http://localhost:5000/api/loans
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../Lenders/LenderSidebar'
@@ -12,7 +14,7 @@ const LenderLoanList = () => {
     useEffect(() => {
         const fetchLoans = async () => {
             try {
-                const response = await axios.get('/api/loans');
+                const response = await axios.get('http://localhost:5000/api/loans');
                 setLoans(response.data);
                 setFilteredLoans(response.data);
             } catch (error) {

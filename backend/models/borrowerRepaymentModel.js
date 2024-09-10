@@ -7,6 +7,9 @@ const Repayment = sequelize.define('borrower-Repayment', {
   amount: {
     type: DataTypes.FLOAT,
     allowNull: false,
+    validate: { 
+      min: 0.01,  // Ensure the amount is positive
+    },
   },
   date: {
     type: DataTypes.DATE,

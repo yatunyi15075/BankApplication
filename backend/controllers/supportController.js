@@ -1,5 +1,7 @@
 import SupportRequest from '../models/supportModel.js';
-import User from '../models/userModel.js';  // Assuming you have a User model
+import User from '../models/userModel.js';
+
+
 export const createSupportRequest = async (req, res) => {
     try {
         const { message } = req.body;
@@ -14,7 +16,7 @@ export const createSupportRequest = async (req, res) => {
 
 // Get all support requests (Admins see all, Lenders see their own)
 export const getSupportRequests = async (req, res) => {
-    try {
+    try { 
         let supportRequests;
         if (req.user.role === 'admin') {
             // Admins see all support requests

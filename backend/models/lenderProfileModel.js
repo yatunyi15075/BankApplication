@@ -7,7 +7,7 @@ const LenderProfile = sequelize.define('LenderProfile', {
     userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        unique: true,
+        unique: true, 
         references: {
             model: 'Users', 
             key: 'id'

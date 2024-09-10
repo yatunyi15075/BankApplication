@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
 
 export const authMiddleware = (req, res, next) => {
-    const token = req.header('Authorization').replace('Bearer ', '');
+    // Extract the token from the Authorization header
+    const token = req.header('Authorization')?.replace('Bearer ', '');
 
     if (!token) {
         return res.status(401).json({ message: 'No token, authorization denied' });
@@ -9,7 +10,7 @@ export const authMiddleware = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded.user;
+        req.user = decoded; // Attach the decoded user to the request object
         next();
     } catch (err) {
         res.status(401).json({ message: 'Token is not valid' });
@@ -17,24 +18,30 @@ export const authMiddleware = (req, res, next) => {
 };
 
 
-export const roleMiddleware = (req, res, next) => {
-    // Get the token from the Authorization header
-    const token = req.header('Authorization').replace('Bearer ', '');
 
-    if (!token) {
-        return res.status(401).json({ message: 'No token, authorization denied' });
-    }
+export const roleMiddleware = (roles) => {
+    return (req, res, next) => {
+        // Extract the token from the Authorization header
+        const token = req.header('Authorization')?.replace('Bearer ', '');
 
-    try {
-        // Verify the token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        if (!token) {
+            return res.status(401).json({ message: 'No token, authorization denied' });
+        }
 
-        // Attach the user's role to the request object
-        req.user = decoded; // The token should contain the user's id and role
-        next();
-    } catch (err) {
-        res.status(401).json({ message: 'Token is not valid' });
-    }
+        try {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+            // Check if the user's role is allowed
+            if (!roles.includes(decoded.role)) {
+                return res.status(403).json({ message: 'Access denied' });
+            }
+
+            req.user = decoded; // Attach the decoded user to the request object
+            next();
+        } catch (err) {
+            res.status(401).json({ message: 'Token is not valid' });
+        }
+    };
 };
 
 
