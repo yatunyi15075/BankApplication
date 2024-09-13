@@ -1,47 +1,19 @@
 import jwt from 'jsonwebtoken';
 
-export const authMiddleware = (req, res, next) => {
-    // Extract the token from the Authorization header
-    const token = req.header('Authorization')?.replace('Bearer ', '');
+const authMiddleware = (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1]; // Extract token from 'Bearer <token>'
 
-    if (!token) {
-        return res.status(401).json({ message: 'No token, authorization denied' });
-    }
+  if (!token) {
+    return res.status(401).json({ message: 'Authentication token missing' });
+  }
 
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded; // Attach the decoded user to the request object
-        next();
-    } catch (err) {
-        res.status(401).json({ message: 'Token is not valid' });
-    }
+  try {
+    const decoded = jwt.verify(token, 'your_jwt_secret'); // Replace with your secret key
+    req.user = decoded; // Attach user details to the request object
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: 'Invalid token' });
+  }
 };
 
-
-
-export const roleMiddleware = (roles) => {
-    return (req, res, next) => {
-        // Extract the token from the Authorization header
-        const token = req.header('Authorization')?.replace('Bearer ', '');
-
-        if (!token) {
-            return res.status(401).json({ message: 'No token, authorization denied' });
-        }
-
-        try {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-            // Check if the user's role is allowed
-            if (!roles.includes(decoded.role)) {
-                return res.status(403).json({ message: 'Access denied' });
-            }
-
-            req.user = decoded; // Attach the decoded user to the request object
-            next();
-        } catch (err) {
-            res.status(401).json({ message: 'Token is not valid' });
-        }
-    };
-};
-
-
+export default authMiddleware;

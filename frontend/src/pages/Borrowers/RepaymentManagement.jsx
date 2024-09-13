@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Sidebar from '../Borrowers/BorrowerSidebar';
+import PaymentPage from './PaymentPage';
+import PayPalButton from './PayPalButton';
 
 const RepaymentManagement = () => {
   const [repayments, setRepayments] = useState([]);
@@ -97,12 +100,18 @@ const RepaymentManagement = () => {
               required
             />
           </div>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg"
-          >
-            Submit Repayment
-          </button>
+          <div className="flex items-center justify-between">
+            <button
+              type="submit"
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+            >
+              Submit Repayment
+            </button>
+            {/* New Button on the same line */}
+            <Link to="/payment" className="ml-4 bg-green-500 text-white px-4 py-2 rounded-lg">
+            Another Action
+          </Link>
+          </div>
         </form>
 
         <div className="mb-8">

@@ -24,6 +24,7 @@ import RegisterUser from './pages/Borrowers/RegisterUser';
 import RepaymentManagement from './pages/Borrowers/RepaymentManagement';
 import SupportRequests from './pages/Borrowers/SupportRequests';
 import BorrowerUserManagement from './pages/Borrowers/UserManagement';
+import PaymentPage from './pages/Borrowers/PaymentPage';
 
 //lender
 import LenderDashboard from './pages/Lenders/Dashboard';
@@ -58,6 +59,7 @@ const App = () => {
             <Route path="/borrower/repayment" element={<RepaymentManagement />} />
             <Route path="/borrower/support-request" element={<SupportRequests  />} />
             <Route path="/borrower/user-management" element={<BorrowerUserManagement />} />
+            <Route path="/payment" element={<PaymentPage />} />
 
             {/* lender */}
             <Route path="/lender/dashboard" element={<LenderDashboard />} />

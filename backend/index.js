@@ -15,6 +15,7 @@ import investmentRouter from './routers/investmentRouter.js';
 import borrowerRepaymentRouter from './routers/borrowerLoanRouter.js';
 import borrowerNotificationRouter from './routers/borrowerNotificationRouter.js';
 import borrowerLoanRouter from './routers/borrowerLoanRouter.js';
+import paypalRoutes from './routers/paypal.js';
 
 dotenv.config();
 
@@ -39,6 +40,8 @@ app.use('/api/investment', investmentRouter);
 app.use('/api/borrower-repayment', borrowerRepaymentRouter);
 app.use('/api/borrower-notification', borrowerNotificationRouter);
 app.use('/api/borrower-loan', borrowerLoanRouter);
+app.use('/api/paypal', paypalRoutes);
+
 
 // Sync database and start the server
 sequelize

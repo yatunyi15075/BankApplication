@@ -1,7 +1,8 @@
 import Loan from '../models/borrowerLoanModel.js';
 
 export const createLoan = async (req, res) => {
-  const { borrowerId, amount, term, purpose, interestRate, repaymentSchedule } = req.body;
+  const { amount, term, purpose, interestRate, repaymentSchedule } = req.body;
+  const borrowerId = req.user.id;  // Extracted from the token (decoded in middleware)
 
   try {
     const newLoan = await Loan.create({

@@ -1,8 +1,6 @@
-//has login/register and also user management codes
-
 import { Router } from 'express';
-import { getAllUsers, updateUserRole, toggleUserActivation, registerUser, loginUser, updateUserProfile }
- from '../controllers/userController.js';
+import { getAllUsers, updateUserRole, toggleUserActivation, registerUser, loginUser, updateUserProfile, getUserProfile } from '../controllers/userController.js';
+import authMiddleware from '../middleware/authMiddleware.js'; 
 
 const router = Router();
 
@@ -13,11 +11,13 @@ router.put('/:id/activation', toggleUserActivation); // Toggle user activation s
 // Register new user
 router.post('/register', registerUser);
 
+// Login user
 router.post('/login', loginUser);
- 
+
+// Get logged-in user's profile
+router.get('/profile', authMiddleware , getUserProfile);
 
 // Update user profile
-router.put('/profile/:userId', updateUserProfile); 
+router.put('/profile', authMiddleware , updateUserProfile); // Use authentication for updating profile
 
 export default router;
- 

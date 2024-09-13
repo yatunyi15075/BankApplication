@@ -11,15 +11,28 @@ const LoanRequestForm = () => {
     repaymentSchedule: '',
   });
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const token = localStorage.getItem('token'); // Retrieve token from local storage
+
     try {
-      await axios.post('http://localhost:5000/api/loans', formData);
+      await axios.post(
+        'http://localhost:5000/api/borrower-loan', 
+        formData, 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add token to request headers
+          }
+        }
+      );
       alert('Loan request submitted successfully!');
     } catch (error) {
       console.error('Error submitting loan request:', error);
