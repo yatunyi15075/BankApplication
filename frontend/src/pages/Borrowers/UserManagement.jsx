@@ -11,7 +11,7 @@ const BorrowerUserManagement = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/admin/users');
+        const response = await axios.get('http://localhost:5000/api/users');
         setUsers(response.data);
         setLoading(false);
       } catch (err) {
@@ -24,8 +24,9 @@ const BorrowerUserManagement = () => {
   }, []);
 
   const handleDeactivate = async (userId) => {
+    
     try {
-      await axios.post(`http://localhost:5000/api/admin/users/${userId}/deactivate`);
+      await axios.post(`http://localhost:5000/api/users/${userId}/deactivate`);
       setUsers(users.map(user => 
         user.id === userId ? { ...user, status: 'inactive' } : user
       ));
@@ -36,7 +37,7 @@ const BorrowerUserManagement = () => {
 
   const handleDelete = async (userId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/admin/users/${userId}`);
+      await axios.delete(`http://localhost:5000/api/users/${userId}`);
       setUsers(users.filter(user => user.id !== userId));
     } catch (err) {
       setError(err.message);
@@ -61,7 +62,7 @@ const BorrowerUserManagement = () => {
           </tr>
         </thead>
         <tbody>
-          {/* {users.map(user => (
+          {users.map(user => (
             <tr key={user.id} className="border-b border-gray-200">
               <td className="p-4">{user.name}</td>
               <td className="p-4">{user.email}</td>
@@ -81,7 +82,7 @@ const BorrowerUserManagement = () => {
                 </button>
               </td>
             </tr>
-          ))} */}
+          ))}
         </tbody>
       </table>
     </div>

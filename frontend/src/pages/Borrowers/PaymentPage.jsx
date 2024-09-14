@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import PayPalButton from './PayPalButton';
 import axios from 'axios';
 
-
 const PaymentPage = () => {
   const [amount, setAmount] = useState(''); // Dynamic amount
 
   // Handle payment success
   const handleSuccess = async (paymentDetails) => {
-    const token = localStorage.getItem('token'); 
-    console.log('Payment Success:', paymentDetails , {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    const token = localStorage.getItem('token');  // Retrieve the token inside the function
+    console.log('Payment Success:', paymentDetails);
 
     // Save payment details to your backend or show success message
     try {
-      await axios.post('/api/paypal/success', paymentDetails);
+      await axios.post('/api/paypal/success', paymentDetails, {
+        headers: {
+          Authorization: `Bearer ${token}`,  // Include Authorization header
+        },
+      });
+      console.log('Payment details saved successfully');
     } catch (error) {
       console.error('Error saving payment details:', error);
     }
@@ -25,15 +25,16 @@ const PaymentPage = () => {
 
   // Handle payment creation (backend API call)
   const handlePayment = async () => {
+    const token = localStorage.getItem('token');  // Retrieve the token inside the function
     if (!amount) {
       alert('Please enter an amount');
       return;
     }
 
     try {
-      const response = await axios.post('/api/paypal/create-payment', { amount } , {
+      const response = await axios.post('http://localhost:5000/api/paypal/create-payment', { amount }, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,  // Include Authorization header
         },
       });
       window.location.href = response.data.links[1].href; // Redirect to PayPal payment page
