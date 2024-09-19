@@ -63,7 +63,7 @@ const UserManagement = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {users.map((user) => (
+                        {users.map((user) => (
                             <tr key={user.id}>
                                 <td className="py-2 px-4">{user.name}</td>
                                 <td className="py-2 px-4">{user.email}</td>
@@ -96,7 +96,7 @@ const UserManagement = () => {
                                     </button>
                                 </td>
                             </tr>
-                        ))} */}
+                        ))}
                     </tbody>
                 </table>
             </div>

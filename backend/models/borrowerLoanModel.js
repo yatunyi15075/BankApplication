@@ -8,7 +8,7 @@ const Loan = sequelize.define('borrower-Loan', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'Users', // Ensure this matches your users model
+      model: 'Users',
       key: 'id',
     },
   },

@@ -3,11 +3,10 @@ import Loan from '../models/loanModel.js';
 import User from '../models/userModel.js';
 
 // Create a new repayment
-
-// Create a new repayment
 export const createRepayment = async (req, res) => {
   try {
-    const { amount, date, loanId, borrowerId } = req.body;
+    const { amount, date, loanId } = req.body;
+    const borrowerId = req.user.id;
 
     // Check if the loan exists
     const loan = await Loan.findByPk(loanId);

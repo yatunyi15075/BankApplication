@@ -41,7 +41,8 @@ export const rejectLoan = async (req, res) => {
 
 // Create a loan request (newly added)
 export const createLoanRequest = async (req, res) => {
-  const { amount, term, purpose, interestRate, repaymentSchedule, borrowerId, borrowerName } = req.body;
+  const { amount, term, purpose, interestRate, repaymentSchedule, borrowerName } = req.body;
+  const borrowerId = req.user.id;
 
   try {
     const newLoan = await Loan.create({

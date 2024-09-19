@@ -8,7 +8,10 @@ const AboutSection = () => {
           Why Choose Us?
         </h2>
         <p className="text-lg md:text-xl text-gray-600 mb-8">
-          At our bank, we believe in making your money work for you. Whether you're an individual or part of a group, we provide solutions that help you invest and save with confidence. Join thousands who trust us to secure their financial future.
+          At our bank, we believe in making your money work for you. 
+          Whether you're an individual or part of a group, we provide 
+          solutions that help you invest and save with confidence. 
+          Join thousands who trust us to secure their financial future.
         </p>
         <img src="/src/assets/about-us.jpg" alt="About Us" className="mx-auto rounded-lg shadow-lg" />
       </div>

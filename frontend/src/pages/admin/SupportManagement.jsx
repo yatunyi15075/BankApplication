@@ -47,7 +47,7 @@ const SupportManagement = () => {
             </tr>
           </thead>
           <tbody>
-            {/* {supportRequests.map((request) => (
+            {supportRequests.map((request) => (
               <tr key={request._id}>
                 <td className="py-2 px-4 border-b">{request._id}</td>
                 <td className="py-2 px-4 border-b">{request.user.name}</td>
@@ -73,7 +73,7 @@ const SupportManagement = () => {
                   )}
                 </td>
               </tr>
-            ))} */}
+            ))}
           </tbody>
         </table>
       </div>

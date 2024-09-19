@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../Borrowers/BorrowerSidebar';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const LoanRequestForm = () => {
   const [formData, setFormData] = useState({
@@ -11,22 +12,37 @@ const LoanRequestForm = () => {
     repaymentSchedule: '',
   });
 
+  const [recaptchaToken, setRecaptchaToken] = useState(null); // Store reCAPTCHA token
+
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Handle reCAPTCHA verification
+  const handleRecaptcha = (token) => {
+    setRecaptchaToken(token); // Set reCAPTCHA token
+  };
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    if (!recaptchaToken) {
+      alert('Please complete the reCAPTCHA');
+      return;
+    }
+
     const token = localStorage.getItem('token'); // Retrieve token from local storage
 
     try {
       await axios.post(
-        'http://localhost:5000/api/borrower-loan', 
-        formData, 
+        'http://localhost:5000/api/borrower-loan',
+        {
+          ...formData,
+          recaptchaToken, // Include reCAPTCHA token in the request
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`, // Add token to request headers
@@ -101,6 +117,15 @@ const LoanRequestForm = () => {
               required
             />
           </div>
+
+          {/* Google reCAPTCHA */}
+          <div className="mb-4">
+            <ReCAPTCHA
+              sitekey="6Lfv-EUqAAAAAMcr7_ho-rP8CO9Wn7AdV6KIQLVI"
+              onChange={handleRecaptcha}
+            />
+          </div>
+
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"

@@ -2,7 +2,8 @@ import Notification from '../models/borrowerNotificationModel.js';
 
 // Create a new notification
 export const createNotification = async (req, res) => {
-  const { userId, message } = req.body;
+  const { message } = req.body;
+  const userId = req.user.id;
   try {
     const notification = await Notification.create({ userId, message });
     res.status(201).json(notification);

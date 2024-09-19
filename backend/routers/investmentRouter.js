@@ -1,6 +1,6 @@
 import express from 'express';
 import { investInLoan, getLenderInvestments } from '../controllers/investmentController.js';
-// import { authenticate } from '../middleware/authenticate.js';
+import authMiddleware from '../middleware/authMiddleware.js'; 
 
 const router = express.Router();
 
@@ -8,9 +8,9 @@ const router = express.Router();
 // router.use(authenticate);
 
 // Route to invest in a loan
-router.post('/', investInLoan);
+router.post('/', authMiddleware, investInLoan);
 
 // Route to get all investments for a lender
-router.get('/', getLenderInvestments);
+router.get('/', authMiddleware, getLenderInvestments);
 
 export default router;

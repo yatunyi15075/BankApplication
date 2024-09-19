@@ -9,6 +9,10 @@ const Loan = sequelize.define('Loan', {
   borrowerId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    references: {
+      model: 'Users',
+      key: 'id',
+    },
   },
   borrowerName: {
     type: DataTypes.STRING,

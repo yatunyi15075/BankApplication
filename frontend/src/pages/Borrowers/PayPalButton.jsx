@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
-// import {PAYPAL_CLIENT_ID} from 'dotenv';
-
 
 const PayPalButton = ({ amount, onSuccess }) => {
   useEffect(() => {
     // Function to dynamically load PayPal SDK
     const loadPayPalScript = () => {
-        const PAYPAL_CLIENT_ID = 'AW1-UCzQ0NsWLPrbp6yA6W9oKeq7SrqKwfSzi6J46AFvvymXxQXzh5sCEVHB65BTLVujeGejeB4v1TKA';
+      const PAYPAL_CLIENT_ID = 'AR3YFcGrNtaIEKZhOBwPOm6lHOIHSe0Jzrd6pZP1eNPqFo5Lgkr5k4YqO8MS3zHLb4ob5NjEpV4kQrh_';
 
       const script = document.createElement('script');
-      script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.PAYPAL_CLIENT_ID}&currency=USD`;
+      script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=USD`;
       script.async = true;
       script.onload = () => {
         window.paypal.Buttons({
@@ -53,7 +51,7 @@ const PayPalButton = ({ amount, onSuccess }) => {
         },
       }).render('#paypal-button-container');
     }
-  }, [amount]);
+  }, [amount, onSuccess]);
 
   return <div id="paypal-button-container"></div>;
 };

@@ -19,7 +19,9 @@ const HeroSection = () => {
             </button>
           </Link>
           <Link to="/signin">
-            <button className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-600 text-white px-6 py-3 rounded-lg text-lg transition duration-300">
+            <button 
+            className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-600
+             text-white px-6 py-3 rounded-lg text-lg transition duration-300">
               Sign In
             </button>
           </Link>

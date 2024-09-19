@@ -65,14 +65,23 @@ const LoanManagement = () => {
             </tr>
           </thead>
           <tbody>
-            {/* {loans.map((loan) => (
+            {loans.map((loan) => (
               <tr key={loan.id}>
                 <td className="py-2 px-4 border-b">{loan.borrowerId}</td>
                 <td className="py-2 px-4 border-b">${loan.amount}</td>
                 <td className="py-2 px-4 border-b">{loan.term} months</td>
                 <td className="py-2 px-4 border-b">{loan.interestRate}%</td>
-                <td className={`py-2 px-4 border-b ${loan.status === 'approved' ? 'text-green-500' : loan.status === 'rejected' ? 'text-red-500' : 'text-yellow-500'}`}>{loan.status}</td>
-                <td className={`py-2 px-4 border-b ${loan.repaymentStatus === 'paid' ? 'text-green-500' : loan.repaymentStatus === 'overdue' ? 'text-red-500' : 'text-yellow-500'}`}>{loan.repaymentStatus}</td>
+
+                <td className={`py-2 px-4 border-b 
+                  ${loan.status === 'approved' ? 'text-green-500' 
+                  : loan.status === 'rejected' ? 'text-red-500' : 'text-yellow-500'}`}>
+                    {loan.status}</td>
+
+                <td className={`py-2 px-4 border-b 
+                ${loan.repaymentStatus === 'paid' ? 'text-green-500' 
+                  : loan.repaymentStatus === 'overdue' ? 'text-red-500' : 'text-yellow-500'}`}>
+                    {loan.repaymentStatus}</td>
+
                 <td className="py-2 px-4 border-b flex space-x-2">
                   {loan.status === 'pending' && (
                     <>
@@ -85,7 +94,7 @@ const LoanManagement = () => {
                   )}
                 </td>
               </tr>
-            ))} */}
+            ))}
           </tbody>
         </table>
       </div>

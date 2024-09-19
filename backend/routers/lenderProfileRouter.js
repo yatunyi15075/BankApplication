@@ -1,13 +1,13 @@
 import express from 'express';
 import { getLenderProfile, updateLenderProfile } from '../controllers/lenderProfileController.js';
-// import authMiddleware from '../middleware/authMiddleware.js';  // Assuming you have an auth middleware
+import authMiddleware from '../middleware/authMiddleware.js'; 
 
 const router = express.Router();
 
 // Get profile
-router.get('/',  getLenderProfile);
+router.get('/', authMiddleware, getLenderProfile);
 
 // Update profile
-router.put('/', updateLenderProfile);
+router.put('/',authMiddleware, updateLenderProfile);
 
 export default router;

@@ -15,6 +15,18 @@ const sequelize = new Sequelize(
   }
 );
 
+
+// const sequelize = new Sequelize(process.env.DATABASE_URL, {
+//   dialect: 'postgres',
+//   logging: console.log, // Enable logging
+//   dialectOptions: {
+//     ssl: {
+//       require: true,
+//       rejectUnauthorized: false, // Adjust based on your SSL configuration
+//     },
+//   },
+// });
+
 sequelize
   .authenticate()
   .then(() => {

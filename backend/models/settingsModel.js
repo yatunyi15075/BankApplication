@@ -17,12 +17,12 @@ const Setting = sequelize.define('Setting', {
         allowNull: false,
     },
     termsOfService: {
-        type: DataTypes.TEXT, // Storing long text for terms of service
-        allowNull: true, // Can be nullable if optional
+        type: DataTypes.TEXT, 
+        allowNull: true, 
     },
     privacyPolicy: {
-        type: DataTypes.TEXT, // Storing long text for privacy policy
-        allowNull: true, // Can be nullable if optional
+        type: DataTypes.TEXT, 
+        allowNull: true, 
     },
 }, {
     timestamps: false,

@@ -16,9 +16,13 @@ const Loan = sequelize.define('Loan-lender', {
         type: DataTypes.FLOAT,
         allowNull: false,
     },
-    borrowerId: {
+    borrowerId:{
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+            model: 'Users',
+            key: 'id',
+        },
     },
     status: {
         type: DataTypes.STRING,

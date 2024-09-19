@@ -1,12 +1,19 @@
 import { Router } from 'express';
-import { getAllUsers, updateUserRole, toggleUserActivation, registerUser, loginUser, updateUserProfile, getUserProfile } from '../controllers/userController.js';
+import { getAllUsers, 
+    updateUserRole, 
+    toggleUserActivation, 
+    registerUser, 
+    loginUser, 
+    updateUserProfile, 
+    getUserProfile } 
+    from '../controllers/userController.js';
 import authMiddleware from '../middleware/authMiddleware.js'; 
 
 const router = Router();
 
-router.get('/', getAllUsers); 
-router.put('/:id/role', updateUserRole); // Update user role
-router.put('/:id/activation', toggleUserActivation); // Toggle user activation status
+router.get('/',authMiddleware, getAllUsers); 
+router.put('/:id/role', authMiddleware, updateUserRole); // Update user role
+router.put('/:id/activation',authMiddleware , toggleUserActivation); // Toggle user activation status
 
 // Register new user
 router.post('/register', registerUser);
