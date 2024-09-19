@@ -14,9 +14,10 @@ export const createSupportRequest = async (req, res) => {
     }
 };
 
-// Get all support requests (Admins see all, Lenders see their own)
+
 export const getSupportRequests = async (req, res) => {
-    try { 
+    try {
+        console.log(req.user); // Log the user info to check if it's populated
         let supportRequests;
         if (req.user.role === 'admin') {
             // Admins see all support requests
@@ -42,9 +43,11 @@ export const getSupportRequests = async (req, res) => {
         }
         res.status(200).json(supportRequests);
     } catch (error) {
+        console.error('Error fetching support requests:', error); // Add error logging
         res.status(500).json({ message: 'Error fetching support requests' });
     }
 };
+
 
 // Update the status of a support request
 export const updateSupportRequest = async (req, res) => {

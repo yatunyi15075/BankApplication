@@ -22,9 +22,10 @@ export const registerUser = async (req, res) => {
       res.status(500).json({ error: 'Server error' });
     }
   };
+
   
-  // Login user
-  export const loginUser = async (req, res) => {
+// Login user
+export const loginUser = async (req, res) => {
     const { email, password } = req.body;
   
     try {
@@ -34,11 +35,14 @@ export const registerUser = async (req, res) => {
       }
   
       const token = jwt.sign({ id: user.id, role: user.role }, 'your_jwt_secret', { expiresIn: '1h' });
-      res.status(200).json({ token });
+      
+      // Send both the token and the user's role in the response
+      res.status(200).json({ token, role: user.role });
     } catch (error) {
       res.status(500).json({ error: 'Server error' });
     }
   };
+  
   
 
 // Update user profile

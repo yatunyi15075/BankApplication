@@ -12,39 +12,61 @@ const LoanManagement = () => {
 
   const fetchLoans = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/loans');
+      const token = localStorage.getItem('token'); // Assuming you store the token in localStorage
+      const response = await axios.get('http://localhost:5000/api/loans', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setLoans(response.data);
     } catch (error) {
       console.error('Error fetching loans:', error);
     }
   };
+  
 
   const handleApprove = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/loans/${id}/approve`);
+      const token = localStorage.getItem('token');
+      await axios.put(`http://localhost:5000/api/loans/${id}/approve`, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       fetchLoans();
     } catch (error) {
       console.error('Error approving loan:', error);
     }
   };
-
+  
   const handleReject = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/loans/${id}/reject`);
+      const token = localStorage.getItem('token');
+      await axios.put(`http://localhost:5000/api/loans/${id}/reject`, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       fetchLoans();
     } catch (error) {
       console.error('Error rejecting loan:', error);
     }
   };
-
+  
   const handleMarkAsPaid = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/loans/${id}/markAsPaid`);
+      const token = localStorage.getItem('token');
+      await axios.put(`http://localhost:5000/api/loans/${id}/markAsPaid`, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       fetchLoans();
     } catch (error) {
       console.error('Error marking loan as paid:', error);
     }
   };
+  
 
   return (
     <div className="flex min-h-screen">

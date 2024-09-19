@@ -12,12 +12,19 @@ const UserManagement = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/users');
+            const token = localStorage.getItem('token'); // Get token from localStorage (or sessionStorage)
+            const response = await axios.get('http://localhost:5000/api/users', {
+                headers: {
+                    Authorization: `Bearer ${token}` // Add the token in the Authorization header
+                }
+            });
+            console.log(response.data);  // Check if data is being fetched
             setUsers(response.data);
         } catch (error) {
             console.error('Error fetching users:', error);
         }
     };
+    
 
     const updateUserRole = async (id, role) => {
         try {

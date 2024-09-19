@@ -9,7 +9,12 @@ const SupportManagement = () => {
   useEffect(() => {
     const fetchSupportRequests = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/support');
+        const token = localStorage.getItem('token'); // Retrieve token from localStorage
+        const response = await axios.get('http://localhost:5000/api/support', {
+          headers: {
+            Authorization: `Bearer ${token}`, // Pass the token in the request headers
+          },
+        });
         setSupportRequests(response.data);
       } catch (error) {
         console.error('Error fetching support requests', error);
@@ -20,19 +25,24 @@ const SupportManagement = () => {
 
   const handleStatusChange = async (id, status) => {
     try {
-      await axios.patch(`http://localhost:5000/api/support/${id}`, { status });
+      const token = localStorage.getItem('token'); // Retrieve token from localStorage
+      await axios.patch(`http://localhost:5000/api/support/${id}`, { status }, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Pass the token in the request headers
+        },
+      });
       setSupportRequests(supportRequests.map(request =>
         request._id === id ? { ...request, status } : request
       ));
     } catch (error) {
       console.error('Error updating support request status', error);
     }
-  }; 
+  };
 
   return (
     <div className="flex min-h-screen">
       <Sidebar userRole="admin" />
-      <div className="p-6">
+      <div className="flex-1 p-6 overflow-y-auto"> {/* Adjusted to take full width */}
         <AdminNavbar />
         <h1 className="text-2xl font-bold mb-4">Support Management</h1>
         <table className="min-w-full bg-white border border-gray-300">

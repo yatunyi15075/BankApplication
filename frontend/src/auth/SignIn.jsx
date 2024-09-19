@@ -11,33 +11,33 @@ const SignIn = () => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await axios.post('http://localhost:5000/api/users/login', { email, password });
-
-      if (response.data.token) {
+  
+      if (response.data.token && response.data.role) {  // Ensure both token and role are present
         const token = response.data.token;
-        const userRole = response.data.role; // Ensure role is retrieved from the response
-        
+        const userRole = response.data.role; // Get the role from the response
+  
         // Store the JWT token and role in local storage
         localStorage.setItem('token', token);
         localStorage.setItem('role', userRole);
-
+  
         // Display success toast message
         toast.success('Login successful!');
-
+  
         // Redirect based on role
         if (userRole === 'admin') navigate('/admin/dashboard');
         else if (userRole === 'lender') navigate('/lender/dashboard');
         else navigate('/borrower/dashboard');
       }
     } catch (error) {
-      // Extract error message and show toast notification
       const errorMessage = error.response && error.response.data ? error.response.data.message : 'Login failed. Please try again.';
       toast.error(errorMessage);
       console.error('SignIn failed', error);
     }
   };
+  
 
   return (
     <div className="flex h-screen">
