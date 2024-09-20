@@ -7,29 +7,38 @@ const LenderRepaymentManagement = () => {
     const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {
-        // Fetch repayment data for the logged-in lender
         const fetchRepayments = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/repayments');
+                const token = localStorage.getItem('token'); // Assuming you store the token in localStorage
+                const response = await axios.get('http://localhost:5000/api/repayments', {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Pass the token in the header
+                    },
+                });
                 setRepayments(response.data);
             } catch (error) {
                 console.error('Error fetching repayments:', error);
             }
-        }; 
-
-        // Fetch transaction history for the logged-in lender
+        };
+    
         const fetchTransactions = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/transactions');
+                const token = localStorage.getItem('token');
+                const response = await axios.get('http://localhost:5000/api/transactions', {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Pass the token in the header
+                    },
+                });
                 setTransactions(response.data);
             } catch (error) {
                 console.error('Error fetching transactions:', error);
             }
         };
-
+    
         fetchRepayments();
         fetchTransactions();
     }, []);
+    
 
     return (
         <div className="flex">

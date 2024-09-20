@@ -13,7 +13,7 @@ const router = Router();
 
 router.get('/',authMiddleware, getAllUsers); 
 router.put('/:id/role', authMiddleware, updateUserRole); // Update user role
-router.put('/:id/activation',authMiddleware , toggleUserActivation); // Toggle user activation status
+router.put('/:id/activation',authMiddleware , toggleUserActivation); 
 
 // Register new user
 router.post('/register', registerUser);

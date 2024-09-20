@@ -25,7 +25,7 @@ export const getSupportRequests = async (req, res) => {
                 include: [
                     {
                         model: User,
-                        attributes: ['name', 'contact'], // Adjust based on actual user model fields
+                        attributes: ['id', 'name'], // Adjust based on actual user model fields
                     },
                 ],
             });

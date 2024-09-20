@@ -13,6 +13,7 @@ import PlatformSettings from './pages/admin/PlatformSettings';
 import Report from './pages/admin/Report';
 import SupportManagement from './pages/admin/SupportManagement';
 import UserManagement from './pages/admin/userManagement';
+import AdminNotifications from './pages/admin/AdminNotifications'
 
 //borrower
 import BorrowerDashboard from './pages/Borrowers/Dashboard';
@@ -79,6 +80,7 @@ const App = () => {
             <Route path="/admin/report" element={<Report />} />
             <Route path="/admin/support-management" element={<SupportManagement />} />
             <Route path="/admin/user-management" element={<UserManagement />} />
+            <Route path="/admin/notifications" element={<AdminNotifications />} />
 
           </Routes>
         </div>

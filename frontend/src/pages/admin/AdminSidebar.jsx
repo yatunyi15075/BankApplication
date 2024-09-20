@@ -50,6 +50,15 @@ const Sidebar = ({ userRole }) => {
               </li>
               <li>
                 <Link
+                  to="/admin/notifications"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                >
+                  <FaChartBar className="mr-3 text-lg" />
+                  Submit Notifications
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/admin/platform-settings"
                   className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
                 >

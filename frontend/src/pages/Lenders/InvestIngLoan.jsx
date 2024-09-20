@@ -13,7 +13,12 @@ const InvestingLoan = () => {
   useEffect(() => {
     const fetchLoans = async () => {
       try {
-        const response = await axios.get('/api/loans');
+        const token = localStorage.getItem('token'); // Assuming the token is stored in localStorage
+        const response = await axios.get('http://localhost:5000/api/loans', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setLoans(response.data);
       } catch (error) {
         toast.error(`Error fetching loans: ${error.message}`);
@@ -25,7 +30,12 @@ const InvestingLoan = () => {
   useEffect(() => {
     const fetchInvestments = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/investment'); 
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:5000/api/investment', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setInvestments(response.data);
       } catch (error) {
         toast.error(`Error fetching investments: ${error.message}`);
@@ -36,13 +46,18 @@ const InvestingLoan = () => {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post('http://localhost:5000/api/investment', data);
+      const token = localStorage.getItem('token');
+      await axios.post('http://localhost:5000/api/investment', data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       toast.success('Investment successful! Your investment has been processed.');
       reset();
     } catch (error) {
       toast.error(`Investment failed: ${error.message}`);
     }
-  }; 
+  };
 
   return (
     <div className="flex">
@@ -53,11 +68,15 @@ const InvestingLoan = () => {
           <div>
             <label htmlFor="loanId" className="block text-sm font-medium text-gray-700">Select Loan</label>
             <select id="loanId" {...register('loanId')} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-              {loans.map((loan) => (
-                <option key={loan.id} value={loan.id}>
-                  {`Loan Amount: ${loan.amount}, Term: ${loan.term} months, Interest Rate: ${loan.interestRate}%`}
-                </option>
-              ))}
+              {Array.isArray(loans) && loans.length > 0 ? (
+                loans.map((loan) => (
+                  <option key={loan.id} value={loan.id}>
+                    {`Loan Amount: ${loan.amount}, Term: ${loan.term} months, Interest Rate: ${loan.interestRate}%`}
+                  </option>
+                ))
+              ) : (
+                <option value="" disabled>No loans available</option>
+              )}
             </select>
           </div>
           <div>
@@ -82,14 +101,20 @@ const InvestingLoan = () => {
             </tr>
           </thead>
           <tbody>
-            {investments.map((investment) => (
-              <tr key={investment.id}>
-                <td className="py-2 px-4 border-b">{investment.loanId}</td>
-                <td className="py-2 px-4 border-b">${investment.amount}</td>
-                <td className="py-2 px-4 border-b">{investment.status}</td>
-                <td className="py-2 px-4 border-b">{investment.repaymentProgress}%</td>
+            {Array.isArray(investments) && investments.length > 0 ? (
+              investments.map((investment) => (
+                <tr key={investment.id}>
+                  <td className="py-2 px-4 border-b">{investment.loanId}</td>
+                  <td className="py-2 px-4 border-b">${investment.amount}</td>
+                  <td className="py-2 px-4 border-b">{investment.status}</td>
+                  <td className="py-2 px-4 border-b">{investment.repaymentProgress}%</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td className="py-2 px-4 border-b" colSpan="4">No investments found</td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
         <ToastContainer />
