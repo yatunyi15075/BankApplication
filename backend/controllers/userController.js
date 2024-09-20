@@ -97,6 +97,39 @@ export const getAllUsers = async (req, res) => {
     }
 };
 
+// // Update user role
+// export const updateUserRole = async (req, res) => {
+//     try {
+//         const { id } = req.params;
+//         const { role } = req.body;
+
+//         const user = await User.findByPk(id);
+//         if (!user) return res.status(404).json({ message: 'User not found' });
+
+//         user.role = role;
+//         await user.save();
+//         res.json({ message: 'User role updated successfully' });
+//     } catch (error) {
+//         res.status(500).json({ message: 'Server error' });
+//     }
+// };
+
+// Deactivate or delete a user
+// export const toggleUserActivation = async (req, res) => {
+//     try {
+//         const { id } = req.params;
+
+//         const user = await User.findByPk(id);
+//         if (!user) return res.status(404).json({ message: 'User not found' });
+
+//         user.isActive = !user.isActive;
+//         await user.save();
+//         res.json({ message: 'User activation status changed successfully' });
+//     } catch (error) {
+//         res.status(500).json({ message: 'Server error' });
+//     }
+// };
+
 // Update user role
 export const updateUserRole = async (req, res) => {
     try {
@@ -114,7 +147,7 @@ export const updateUserRole = async (req, res) => {
     }
 };
 
-// Deactivate or delete a user
+// Toggle user activation
 export const toggleUserActivation = async (req, res) => {
     try {
         const { id } = req.params;
@@ -130,4 +163,17 @@ export const toggleUserActivation = async (req, res) => {
     }
 };
 
+// Delete user
+export const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
 
+        const user = await User.findByPk(id);
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        await user.destroy();
+        res.json({ message: 'User deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};

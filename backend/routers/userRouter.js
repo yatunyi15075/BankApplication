@@ -5,7 +5,8 @@ import { getAllUsers,
     registerUser, 
     loginUser, 
     updateUserProfile, 
-    getUserProfile } 
+    getUserProfile,
+    deleteUser } 
     from '../controllers/userController.js';
 import authMiddleware from '../middleware/authMiddleware.js'; 
 
@@ -13,7 +14,9 @@ const router = Router();
 
 router.get('/',authMiddleware, getAllUsers); 
 router.put('/:id/role', authMiddleware, updateUserRole); // Update user role
-router.put('/:id/activation',authMiddleware , toggleUserActivation); 
+router.put('/:id/activation',authMiddleware , toggleUserActivation);
+router.delete('/:id', authMiddleware, deleteUser);
+
 
 // Register new user
 router.post('/register', registerUser);

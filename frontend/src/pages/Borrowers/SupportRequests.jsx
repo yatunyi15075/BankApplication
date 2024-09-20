@@ -36,7 +36,7 @@ const SupportRequests = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/support/requests', { text: requestText });
+      await axios.post('http://localhost:5000/api/support', { text: requestText });
       setRequestText('');
       setRequests([...requests, { text: requestText, status: 'Pending' }]);
     } catch (error) {

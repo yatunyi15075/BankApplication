@@ -24,11 +24,15 @@ const UserManagement = () => {
             console.error('Error fetching users:', error);
         }
     };
-    
 
     const updateUserRole = async (id, role) => {
         try {
-            await axios.put(`http://localhost:5000/api/users/${id}/role`, { role });
+            const token = localStorage.getItem('token');
+            await axios.put(`http://localhost:5000/api/users/${id}/role`, { role }, { 
+                headers: {
+                    Authorization: `Bearer ${token}` // Add the token in the Authorization header
+                }
+            });
             fetchUsers();
         } catch (error) {
             console.error('Error updating user role:', error);
@@ -37,16 +41,26 @@ const UserManagement = () => {
 
     const toggleUserActivation = async (id) => {
         try {
-            await axios.put(`http://localhost:5000/api/users/${id}/activation`);
+            const token = localStorage.getItem('token');
+            await axios.put(`http://localhost:5000/api/users/${id}/activation`, {}, {
+                headers: {
+                    Authorization: `Bearer ${token}` // Add the token in the Authorization header
+                }
+            });
             fetchUsers();
         } catch (error) {
             console.error('Error toggling user activation:', error);
-        } 
+        }
     };
 
     const deleteUser = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/users/${id}`);
+            const token = localStorage.getItem('token');
+            await axios.delete(`http://localhost:5000/api/users/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}` // Add the token in the Authorization header
+                }
+            });
             fetchUsers();
         } catch (error) {
             console.error('Error deleting user:', error);

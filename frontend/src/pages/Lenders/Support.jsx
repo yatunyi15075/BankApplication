@@ -14,7 +14,13 @@ const LenderSupport = () => {
     const handleSubmit = async (e) => {
         e.preventDefault(); 
         try {
-            await axios.post('http://localhost:5000/api/support', { message });
+            const token = localStorage.getItem('token');
+            await axios.post('http://localhost:5000/api/support', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                
+                message });
             setStatus('Your message has been sent successfully.');
             setMessage('');
         } catch (error) {

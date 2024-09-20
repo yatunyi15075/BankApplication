@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import AdminNavbar from './AdminNavbar';
+import Sidebar from './AdminSidebar';
 
 const AdminNotifications  = () => {
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState('');
     const [message, setMessage] = useState('');
+    const [userId, setUserId] = useState('');
 
     useEffect(() => {
         fetchUsers();
@@ -15,7 +18,7 @@ const AdminNotifications  = () => {
             const token = localStorage.getItem('token'); // Get token from localStorage (or sessionStorage)
             const response = await axios.get('http://localhost:5000/api/users', {
                 headers: {
-                    Authorization: `Bearer ${token}` // Add the token in the Authorization header
+                    Authorization: `Bearer ${token}` 
                 }
             });
             setUsers(response.data);
@@ -27,7 +30,12 @@ const AdminNotifications  = () => {
     const sendNotification = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/notifications', {
+            const token = localStorage.getItem('token');
+            await axios.post('http://localhost:5000/api/borrower-notification', {
+                headers: {
+                    Authorization: `Bearer ${token}` 
+                },
+
                 userId: selectedUser,
                 message: message
             });
@@ -40,7 +48,10 @@ const AdminNotifications  = () => {
     };
 
     return (
-        <div className="p-4 bg-white rounded-lg shadow-md">
+        <div className="flex min-h-screen">
+            <Sidebar userRole="admin" />
+            <div className="flex-1 p-6 bg-white shadow-md rounded overflow-y-auto">
+                <AdminNavbar />
             <h2 className="text-xl font-semibold mb-4">Send Notification</h2>
             <form onSubmit={sendNotification}>
                 <div className="mb-4">
@@ -73,6 +84,7 @@ const AdminNotifications  = () => {
                     Send Notification
                 </button>
             </form>
+        </div>
         </div>
     );
 };
