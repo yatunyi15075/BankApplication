@@ -30,22 +30,26 @@ const AdminNotifications  = () => {
     const sendNotification = async (e) => {
         e.preventDefault();
         try {
-            const token = localStorage.getItem('token');
-            await axios.post('http://localhost:5000/api/borrower-notification', {
-                headers: {
-                    Authorization: `Bearer ${token}` 
-                },
-
-                userId: selectedUser,
-                message: message
-            });
-            setMessage('');
-            setSelectedUser('');
-            alert('Notification sent successfully!');
+          const token = localStorage.getItem('token');
+          await axios.post('http://localhost:5000/api/borrower-notification', 
+          {
+              userId: selectedUser, 
+              message: message
+          },
+          {
+              headers: {
+                  Authorization: `Bearer ${token}` 
+              }
+          });
+          setMessage('');
+          setSelectedUser('');
+          alert('Notification sent successfully!');
         } catch (error) {
-            console.error('Error sending notification:', error);
+          console.error('Error sending notification:', error);
         }
-    };
+      };
+      
+    
 
     return (
         <div className="flex min-h-screen">

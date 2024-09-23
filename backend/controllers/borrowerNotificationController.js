@@ -1,9 +1,9 @@
 import Notification from '../models/borrowerNotificationModel.js';
 
 // Create a new notification
+// Create a new notification
 export const createNotification = async (req, res) => {
-  const { message } = req.body;
-  const userId = req.user.id;
+  const { message, userId } = req.body;  // Get userId from the request body
   try {
     const notification = await Notification.create({ userId, message });
     res.status(201).json(notification);
@@ -12,9 +12,11 @@ export const createNotification = async (req, res) => {
   }
 };
 
+
 // Get notifications for a user
 export const getUserNotifications = async (req, res) => {
-  const { userId } = req.params;
+  const userId = req.user.id; // Use the user ID from the token, not params
+  
   try {
     const notifications = await Notification.findAll({ where: { userId } });
     res.status(200).json(notifications);
@@ -22,6 +24,8 @@ export const getUserNotifications = async (req, res) => {
     res.status(500).json({ message: 'Error fetching notifications', error });
   }
 };
+
+
 
 // Update notification status
 export const updateNotificationStatus = async (req, res) => {

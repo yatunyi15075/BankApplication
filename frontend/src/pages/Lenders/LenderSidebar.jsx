@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaHome, FaTasks, FaUser, FaEnvelope, FaDollarSign, FaChartBar } from 'react-icons/fa';
 
-const Sidebar = ({ userRole }) => {
+const Sidebar = ({ userRole, unreadCount }) => {
   return (
     <div className="bg-gray-800 text-white w-64 min-h-screen flex flex-col">
       <div className="flex items-center justify-center h-16 bg-gray-900 shadow-md">
@@ -33,10 +33,16 @@ const Sidebar = ({ userRole }) => {
               <li>
                 <Link
                   to="/lender/notifications"
-                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200"
+                  className="flex items-center p-4 hover:bg-gray-700 transition-colors duration-200 relative"
                 >
                   <FaEnvelope className="mr-3 text-lg" />
                   Notifications
+                  {/* Show a badge with unread count */}
+                  {unreadCount > 0 && (
+                    <span className="absolute right-3 top-3 bg-red-500 text-white rounded-full px-2 py-0.5 text-xs">
+                      {unreadCount}
+                    </span>
+                  )}
                 </Link>
               </li>
               <li>

@@ -12,24 +12,58 @@ function AdminDashboard() {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/admin/dashboard')
-      .then(response => {
-        setDashboardData(response.data);
-      })
-      .catch(error => {
-        console.error("There was an error fetching the data!", error);
-      });
+    const fetchDashboardData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+
+        // Fetch loans data with token
+        const loansResponse = await axios.get('http://localhost:5000/api/admin/loans', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const loans = loansResponse.data;
+        const totalLoans = loans.length;
+        const activeLoans = loans.filter(loan => loan.status === 'active').length;
+
+        // Fetch users data with token
+        const usersResponse = await axios.get('http://localhost:5000/api/admin/users', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const users = usersResponse.data;
+        const totalUsers = users.length;
+
+        // Calculate new users (registered within the last 7 days)
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        const newUsers = users.filter(user => new Date(user.createdAt) > oneWeekAgo).length;
+
+        // Set the dashboard data
+        setDashboardData({
+          totalLoans,
+          activeLoans,
+          totalUsers,
+          newUsers,
+        });
+      } catch (error) {
+        console.error('Error fetching dashboard data:', error);
+      }
+    };
+
+    fetchDashboardData();
   }, []);
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex flex-col md:flex-row min-h-screen">
       <Sidebar userRole="admin" />
       <div className="flex-1 bg-gray-100 p-4">
         <AdminNavbar />
         <div className="max-w-7xl mx-auto">
           <h1 className="text-3xl font-bold text-gray-800 mb-6">Admin Dashboard</h1>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Total Loans */}
             <div className="bg-white shadow-md rounded-lg p-6">
               <h2 className="text-xl font-semibold text-gray-700">Total Loans</h2>
@@ -50,7 +84,7 @@ function AdminDashboard() {
             
             {/* New Users */}
             <div className="bg-white shadow-md rounded-lg p-6">
-              <h2 className="text-xl font-semibold text-gray-700">New Users</h2>
+              <h2 className="text-xl font-semibold text-gray-700">New Users (Last 7 Days)</h2>
               <p className="text-2xl font-bold text-gray-900">{dashboardData.newUsers}</p>
             </div>
           </div>

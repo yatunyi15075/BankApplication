@@ -8,8 +8,8 @@ import authMiddleware from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.get('/', authMiddleware, getSupportRequests);
-router.patch('/:id', authMiddleware , updateSupportRequest);
-router.post('/', authMiddleware , createSupportRequest);
+router.get('/', getSupportRequests);
+router.patch('/:id',  updateSupportRequest);
+router.post('/', createSupportRequest);
 
 export default router;

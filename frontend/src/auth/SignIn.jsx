@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,41 +11,34 @@ const SignIn = () => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-  
     try {
       const response = await axios.post('http://localhost:5000/api/users/login', { email, password });
-  
-      if (response.data.token && response.data.role) {  // Ensure both token and role are present
+      if (response.data.token && response.data.role) {
         const token = response.data.token;
-        const userRole = response.data.role; // Get the role from the response
-  
-        // Store the JWT token and role in local storage
+        const userRole = response.data.role;
+
         localStorage.setItem('token', token);
         localStorage.setItem('role', userRole);
-  
-        // Display success toast message
+
         toast.success('Login successful!');
-  
-        // Redirect based on role
         if (userRole === 'admin') navigate('/admin/dashboard');
         else if (userRole === 'lender') navigate('/lender/dashboard');
         else navigate('/borrower/dashboard');
       }
     } catch (error) {
-      const errorMessage = error.response && error.response.data ? error.response.data.message : 'Login failed. Please try again.';
+      const errorMessage = error.response?.data?.message || 'Login failed. Please try again.';
       toast.error(errorMessage);
       console.error('SignIn failed', error);
     }
   };
-  
 
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 bg-gray-100">
+    <div className="flex flex-col md:flex-row h-screen">
+      <div className="md:w-1/2 w-full bg-gray-100">
         <img src="/src/assets/auth.png" alt="SignIn" className="object-cover w-full h-full" />
       </div>
-      <div className="w-1/2 flex flex-col justify-center px-16 bg-white">
-        <h2 className="text-3xl font-bold mb-6">Welcome Back!</h2>
+      <div className="md:w-1/2 w-full flex flex-col justify-center px-8 md:px-16 bg-white">
+        <h2 className="text-3xl font-bold mb-6 text-center md:text-left">Welcome Back!</h2>
         <form onSubmit={handleSignIn}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
@@ -71,8 +64,10 @@ const SignIn = () => {
             Sign In
           </button>
         </form>
+        <div className="mt-4 text-center">
+          <Link to="/register" className="text-indigo-600 hover:underline">Don't have an account? Register</Link>
+        </div>
         <ToastContainer />
-        <div to="/register"> Don't have an account? Register </div>
       </div>
     </div>
   );

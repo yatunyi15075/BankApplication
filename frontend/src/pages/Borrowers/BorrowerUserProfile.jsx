@@ -12,7 +12,7 @@ const UserProfile = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const token = localStorage.getItem('token'); // Assuming the token is stored in localStorage
+                const token = localStorage.getItem('token');
                 const response = await axios.get('http://localhost:5000/api/users/profile', {
                     headers: {
                         Authorization: `Bearer ${token}`

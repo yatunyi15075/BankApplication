@@ -16,7 +16,7 @@ const RepaymentManagement = () => {
 
   useEffect(() => {
     fetchRepaymentHistory();
-    fetchUpcomingRepayments();  // Fetch upcoming repayments
+    fetchUpcomingRepayments();
   }, []); 
 
   const fetchRepaymentHistory = async () => {
@@ -47,7 +47,7 @@ const RepaymentManagement = () => {
     try {
       await axios.post('http://localhost:5000/api/borrower-repayment', { amount, date, loanId, borrowerId });
       fetchRepaymentHistory();
-      fetchUpcomingRepayments();  // Refresh upcoming repayments after making a payment
+      fetchUpcomingRepayments();
       setAmount('');
       setDate('');
       setLoanId('');
@@ -66,7 +66,7 @@ const RepaymentManagement = () => {
 
         <form onSubmit={handleRepaymentSubmit} className="mb-6 p-4 border rounded-lg">
           <h3 className="text-xl font-semibold mb-4">Make a Repayment</h3>
-          {error && <p className="text-red-500 mb-4">{error}</p>}  {/* Display error messages */}
+          {error && <p className="text-red-500 mb-4">{error}</p>}
           <div className="mb-4">
             <label htmlFor="amount" className="block text-gray-700">Amount</label>
             <input
@@ -108,7 +108,7 @@ const RepaymentManagement = () => {
               Submit Repayment
             </button>
             {/* New Button on the same line */}
-            <Link to="/payment" className="ml-4 bg-green-500 text-white px-4 py-2 rounded-lg">
+            <Link to="/pay-stack-payment" className="ml-4 bg-green-500 text-white px-4 py-2 rounded-lg">
             Another Action
           </Link>
           </div>

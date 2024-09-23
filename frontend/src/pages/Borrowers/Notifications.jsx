@@ -14,6 +14,7 @@ const Notifications = ({ userId }) => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
+        const token = localStorage.getItem('token');
         const response = await axios.get(`http://localhost:5000/api/borrower-notification/${userId}`);
         setNotifications(response.data);
       } catch (error) {
@@ -26,7 +27,10 @@ const Notifications = ({ userId }) => {
 
   const handleMarkAsRead = async (notificationId) => {
     try {
-      await axios.put(`/api/notifications/${notificationId}`, { status: 'read' });
+      const token = localStorage.getItem('token');
+      await axios.put(`http://localhost:5000/api/borrower-notification/${notificationId}`, 
+      { status: 'read' }, 
+      { headers: { Authorization: `Bearer ${token}` } });
       setNotifications(notifications.map(n => 
         n.id === notificationId ? { ...n, status: 'read' } : n
       ));
@@ -35,6 +39,7 @@ const Notifications = ({ userId }) => {
       toast.error('Failed to update notification status');
     }
   };
+  
 
   return (
     <div className="flex">
@@ -42,7 +47,7 @@ const Notifications = ({ userId }) => {
     <div className="p-4 bg-gray-100 rounded-lg shadow-md">
       <h2 className="text-xl font-semibold mb-4">Your Notifications</h2>
       <ul>
-        {/* {notifications.map(notification => (
+        {notifications.map(notification => (
           <li key={notification.id} className="flex justify-between items-center p-2 mb-2 bg-white rounded-lg shadow-sm">
             <span className={`flex-1 ${notification.status === 'read' ? 'text-gray-500' : 'text-black'}`}>
               {notification.message}
@@ -56,7 +61,7 @@ const Notifications = ({ userId }) => {
               </button>
             )}
           </li>
-        ))} */}
+        ))}
       </ul>
       <ToastContainer />
     </div>

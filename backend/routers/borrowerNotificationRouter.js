@@ -11,4 +11,3 @@ router.get('/:userId', authMiddleware , getUserNotifications);
 router.put('/:notificationId', authMiddleware , updateNotificationStatus);
 
 export default router;
- 

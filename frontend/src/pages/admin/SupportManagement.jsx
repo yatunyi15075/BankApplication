@@ -43,44 +43,32 @@ const SupportManagement = () => {
     <div className="flex min-h-screen">
       <Sidebar userRole="admin" />
       <div className="flex-1 p-6 overflow-y-auto"> {/* Adjusted to take full width */}
-        <AdminNavbar />
-        <h1 className="text-2xl font-bold mb-4">Support Management</h1>
-        <table className="min-w-full bg-white border border-gray-300">
+        <h1 className="text-2xl font-bold mb-4">Support Requests</h1>
+        <table className="min-w-full bg-white border-collapse">
           <thead>
-            <tr className="bg-gray-200">
-              <th className="py-2 px-4 border-b">ID</th>
-              <th className="py-2 px-4 border-b">User</th>
-              <th className="py-2 px-4 border-b">Message</th>
-              <th className="py-2 px-4 border-b">Contact</th>
-              <th className="py-2 px-4 border-b">Status</th>
-              <th className="py-2 px-4 border-b">Actions</th>
+            <tr>
+              <th className="border px-4 py-2">Name</th>
+              <th className="border px-4 py-2">Email</th>
+              <th className="border px-4 py-2">Status</th>
+              <th className="border px-4 py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {supportRequests.map((request) => (
-              <tr key={request._id}>
-                <td className="py-2 px-4 border-b">{request._id}</td>
-                <td className="py-2 px-4 border-b">{request.user.name}</td>
-                <td className="py-2 px-4 border-b">{request.message}</td>
-                <td className="py-2 px-4 border-b">{request.user.contact}</td>
-                <td className="py-2 px-4 border-b">{request.status}</td>
-                <td className="py-2 px-4 border-b">
-                  {request.status !== 'Resolved' && (
-                    <>
-                      <button
-                        className="bg-green-500 text-white py-1 px-4 rounded mr-2"
-                        onClick={() => handleStatusChange(request._id, 'In Progress')}
-                      >
-                        In Progress
-                      </button>
-                      <button
-                        className="bg-blue-500 text-white py-1 px-4 rounded"
-                        onClick={() => handleStatusChange(request._id, 'Resolved')}
-                      >
-                        Resolve
-                      </button>
-                    </>
-                  )}
+            {supportRequests.map((request, index) => (
+              <tr key={index}>
+                {/* Adding a check to make sure 'request' and 'request.name' are defined */}
+                <td className="border px-4 py-2">{request.name ? request.name : 'No Name Available'}</td>
+                <td className="border px-4 py-2">{request.email ? request.email : 'No Email Available'}</td>
+                <td className="border px-4 py-2">
+                  {request.status}
+                </td>
+                <td className="border px-4 py-2">
+                  <button
+                    onClick={() => handleStatusChange(request._id, 'resolved')}
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                  >
+                    Mark as Resolved
+                  </button>
                 </td>
               </tr>
             ))}
