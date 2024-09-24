@@ -2,7 +2,7 @@
 
 Welcome to the Fintech Banking Application! This web application is designed to facilitate seamless banking operations among Admins, Lenders, and Borrowers. Built with a modern tech stack, it offers a user-friendly interface for managing loans and repayments.
 
-![Banking Application](./6.png)
+![Banking Application](./assets/6.png)
 
 ## Features
 
@@ -27,5 +27,5 @@ To get started with the application, follow these steps:
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/yatunyi15075/Banking-Application.git
+   cd Banking-Application
