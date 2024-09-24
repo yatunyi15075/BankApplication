@@ -67,4 +67,3 @@ For any questions or feedback, feel free to reach out to me at brianyondeko03@gm
 Thank you for checking out the Fintech Banking Application! Don't forget to subscribe to my YouTube channel: Coding with Brian for more content.
 
 
-Now, the image is linked from the GitHub URL you provided: `https://github.com/yatunyi15075/BankApplication/blob/master/frontend/src/assets/6.png`.
