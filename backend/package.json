@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "build": "npm install",
-    "postinstall": "npm rebuild bcrypt"
+    "build": "npm install"
   },
   "keywords": [],
   "author": "",
