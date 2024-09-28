@@ -25,7 +25,6 @@ import RegisterUser from './pages/Borrowers/RegisterUser';
 import RepaymentManagement from './pages/Borrowers/RepaymentManagement';
 import SupportRequests from './pages/Borrowers/SupportRequests';
 import BorrowerUserManagement from './pages/Borrowers/UserManagement';
-import PaymentPage from './pages/Borrowers/PaymentPage';
 import PaystackPayment from './pages/Borrowers/PaystackPayment';
 
 //lender
@@ -50,6 +49,7 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/signin" element={<SignIn />} />
 
+            {/* I have not implimented protected routes on the codes/dashboard but you can try to do that */}
 
             {/* Borrower */}
             <Route path="/borrower/dashboard" element={<BorrowerDashboard/>} />
@@ -61,7 +61,6 @@ const App = () => {
             <Route path="/borrower/repayment" element={<RepaymentManagement />} />
             <Route path="/borrower/support-request" element={<SupportRequests  />} />
             <Route path="/borrower/user-management" element={<BorrowerUserManagement />} />
-            <Route path="/payment" element={<PaymentPage />} />
             <Route path="/pay-stack-payment" element={<PaystackPayment />} />
 
             {/* lender */}

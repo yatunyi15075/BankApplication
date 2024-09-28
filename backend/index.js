@@ -25,7 +25,7 @@ const PORT = config.port;
 const { sequelize } = config;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors()); 
 
 // Routers
 app.use('/api/users', userRouter);

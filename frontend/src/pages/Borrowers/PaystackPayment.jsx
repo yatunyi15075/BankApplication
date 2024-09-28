@@ -42,20 +42,23 @@ const PaystackPayment = () => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:ring-2 
+          focus:ring-blue-400 focus:outline-none"
           placeholder="Enter your email"
         />
         <input
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          className="w-full px-4 py-2 mb-6 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          className="w-full px-4 py-2 mb-6 border border-gray-300 rounded-md focus:ring-2 
+          focus:ring-blue-400 focus:outline-none"
           placeholder="Enter amount"
         />
         <select
           value={currency}
           onChange={(e) => setCurrency(e.target.value)}
-          className="w-full px-4 py-2 mb-6 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          className="w-full px-4 py-2 mb-6 border border-gray-300 rounded-md focus:ring-2 
+          focus:ring-blue-400 focus:outline-none"
         >
           <option value="USD">USD</option>
           <option value="NGN">NGN (Naira)</option>
@@ -65,7 +68,8 @@ const PaystackPayment = () => {
         </select>
         <button
           onClick={handlePaystackPayment}
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition duration-300"
+          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 
+          rounded-md transition duration-300"
         >
           Pay Now
         </button>

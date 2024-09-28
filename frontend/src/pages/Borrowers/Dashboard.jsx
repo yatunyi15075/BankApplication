@@ -11,7 +11,9 @@ const BorrowerDashboard = () => {
         <h1 className="text-3xl font-bold mb-4">Borrower Dashboard</h1>
         <div className="bg-white p-6 shadow-md rounded-md">
           <h2 className="text-xl font-semibold mb-2">Overview</h2>
-          <p className="text-gray-700">Welcome to the Borrower Dashboard. Here you can manage your loan requests, view notifications, and access your profile.</p>
+          <p className="text-gray-700">
+            Welcome to the Borrower Dashboard. Here you can manage your loan requests, 
+            view notifications, and access your profile.</p>
         </div>
       </div>
     </div>

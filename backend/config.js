@@ -3,29 +3,16 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Create a Sequelize instance using MySQL
-const sequelize = new Sequelize(
-  process.env.DATABASE_NAME,
-  process.env.DATABASE_USER,
-  process.env.DATABASE_PASSWORD,
-  {
-    host: process.env.DATABASE_HOST,
-    dialect: 'mysql', // Change dialect to 'mysql'
-    logging: console.log, // Enable logging (optional)
-  }
-);
-
-
-// const sequelize = new Sequelize(process.env.DATABASE_URL, {
-//   dialect: 'postgres',
-//   logging: console.log, // Enable logging
-//   dialectOptions: {
-//     ssl: {
-//       require: true,
-//       rejectUnauthorized: false, // Adjust based on your SSL configuration
-//     },
-//   },
-// });
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  logging: console.log, 
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, 
+    },
+  },
+});
 
 sequelize
   .authenticate()

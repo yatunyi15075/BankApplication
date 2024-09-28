@@ -11,7 +11,7 @@ const Sidebar = ({ userRole }) => {
       <nav className="flex-1 mt-6">
         <ul>
           {userRole === 'borrower' && (
-            <>
+            <> 
               <li>
                 <Link
                   to="/borrower/dashboard"

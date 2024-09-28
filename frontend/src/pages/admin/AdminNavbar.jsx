@@ -40,7 +40,7 @@ const AdminNavbar = () => {
         </button>
       </div>
     </div>
-  );
+  ); 
 };
 
 export default AdminNavbar;

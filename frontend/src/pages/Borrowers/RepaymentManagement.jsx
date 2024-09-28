@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Sidebar from '../Borrowers/BorrowerSidebar';
-import PaymentPage from './PaymentPage';
-import PayPalButton from './PayPalButton';
+
 
 const RepaymentManagement = () => {
   const [repayments, setRepayments] = useState([]);
