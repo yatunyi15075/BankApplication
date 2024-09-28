@@ -14,7 +14,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/users/register', {
+      const response = await axios.post('https://bankapplication-hsep.onrender.com/api/users/register', {
         name,
         email,
         password,
