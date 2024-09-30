@@ -15,6 +15,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
+      //when deploying I changed the backedn path based on the backend path from where our backedn runs online
       const response = await axios.post('https://bankapplication-hsep.onrender.com/api/users/register', {
         name,
         email,

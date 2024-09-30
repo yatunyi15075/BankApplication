@@ -13,6 +13,7 @@ const SignIn = () => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
+       //when deploying I changed the backedn path based on the backend path from where our backedn runs online
       const response = await axios.post('https://bankapplication-hsep.onrender.com/api/users/login', { email, password });
       if (response.data.token && response.data.role) {
         const token = response.data.token;
