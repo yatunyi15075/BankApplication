@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import auth from '../assets/auth.png';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -35,7 +36,7 @@ const Register = () => {
   return (
     <div className="flex flex-col md:flex-row h-screen">
       <div className="md:w-1/2 w-full bg-gray-100">
-        <img src="/src/assets/auth.png" alt="Register" className="object-cover w-full h-full" />
+        <img src={auth} alt="Register" className="object-cover w-full h-full" />
       </div>
       <div className="md:w-1/2 w-full flex flex-col justify-center px-8 md:px-16 bg-white">
         <h2 className="text-3xl font-bold mb-6 text-center md:text-left">Create an Account</h2>

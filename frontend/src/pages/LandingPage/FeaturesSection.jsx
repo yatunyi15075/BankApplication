@@ -1,4 +1,7 @@
 import React from 'react';
+import investing from '../../assets/investing.jpg';
+import saving from '../../assets/Saving.png';
+import groupSaving from '../../assets/groupSaving.png';
 
 const FeaturesSection = () => {
   return (
@@ -9,21 +12,21 @@ const FeaturesSection = () => {
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           <div className="bg-white p-6 shadow-lg rounded-lg transform hover:scale-105 transition duration-300">
-            <img src="/src/assets/investing.jpg" alt="Investing" className="w-full mb-4 rounded-lg" />
+            <img src={investing} alt="Investing" className="w-full mb-4 rounded-lg" />
             <h3 className="text-xl font-bold mb-2">Personalized Investments</h3>
             <p className="text-gray-600">
               Grow your wealth with tailored investment plans that meet your financial goals.
             </p>
           </div>
           <div className="bg-white p-6 shadow-lg rounded-lg transform hover:scale-105 transition duration-300">
-            <img src="/src/assets/saving.png" alt="Saving" className="w-full mb-4 rounded-lg" />
+            <img src={saving} alt="Saving" className="w-full mb-4 rounded-lg" />
             <h3 className="text-xl font-bold mb-2">Smart Savings</h3>
             <p className="text-gray-600">
               Save for your future with high-interest savings accounts that ensure your money works for you.
             </p>
           </div>
           <div className="bg-white p-6 shadow-lg rounded-lg transform hover:scale-105 transition duration-300">
-            <img src="/src/assets/group-saving.png" alt="Group Saving" className="w-full mb-4 rounded-lg" />
+            <img src={groupSaving} alt="Group Saving" className="w-full mb-4 rounded-lg" />
             <h3 className="text-xl font-bold mb-2">Group Savings Plans</h3>
             <p className="text-gray-600">
               Join group savings schemes and benefit from collective investments for greater returns.

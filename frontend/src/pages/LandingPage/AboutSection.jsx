@@ -1,4 +1,5 @@
 import React from 'react';
+import about from '../../assets/about.jpg';
 
 const AboutSection = () => {
   return (
@@ -13,7 +14,7 @@ const AboutSection = () => {
           solutions that help you invest and save with confidence. 
           Join thousands who trust us to secure their financial future.
         </p>
-        <img src="/src/assets/about-us.jpg" alt="About Us" className="mx-auto rounded-lg shadow-lg" />
+        <img src={about} alt="About Us" className="mx-auto rounded-lg shadow-lg" />
       </div>
     </section>
   );

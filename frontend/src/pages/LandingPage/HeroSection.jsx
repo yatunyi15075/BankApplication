@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import hero from '../../assets/hero.png';
 
 const HeroSection = () => {
   return (
@@ -30,7 +31,7 @@ const HeroSection = () => {
 
       {/* Right Side - Image */}
       <div className="mt-8 md:mt-0 md:w-1/2 flex justify-end">
-        <img src="/src/assets/hero-image.png" alt="Hero Image" className="w-full max-w-lg rounded-lg shadow-lg" />
+        <img src={hero} alt="Hero Image" className="w-full max-w-lg rounded-lg shadow-lg" />
       </div>
     </section>
   );

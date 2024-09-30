@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.png'
 
 const Navbar = () => {
   return (
@@ -7,7 +8,7 @@ const Navbar = () => {
       <div className="flex justify-between items-center max-w-6xl mx-auto">
         <div>
           <Link to="/" className="hover:text-gray-300">
-            <img src="/src/assets/logo.png" alt="Logo" className="w-24 h-20" />
+            <img src={logo} alt="Logo" className="w-24 h-20" />
           </Link>
         </div>
         <div className="space-x-6">
