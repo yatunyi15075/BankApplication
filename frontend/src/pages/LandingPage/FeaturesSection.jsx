@@ -1,7 +1,7 @@
 import React from 'react';
 import investing from '../../assets/investing.jpg';
-import saving from '../../assets/Saving.png';
-import groupSaving from '../../assets/groupSaving.png';
+import saving from '../../assets/saving.png';
+import group from '../../assets/group.png';
 
 const FeaturesSection = () => {
   return (
@@ -26,7 +26,7 @@ const FeaturesSection = () => {
             </p>
           </div>
           <div className="bg-white p-6 shadow-lg rounded-lg transform hover:scale-105 transition duration-300">
-            <img src={groupSaving} alt="Group Saving" className="w-full mb-4 rounded-lg" />
+            <img src={group} alt="Group Saving" className="w-full mb-4 rounded-lg" />
             <h3 className="text-xl font-bold mb-2">Group Savings Plans</h3>
             <p className="text-gray-600">
               Join group savings schemes and benefit from collective investments for greater returns.
